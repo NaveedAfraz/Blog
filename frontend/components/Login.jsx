@@ -102,7 +102,8 @@ function Login() {
                     data-mdb-button-init
                     data-mdb-ripple-init
                     className="btn btn-info btn-lg btn-block"
-                    type="submit"
+                    type="button"
+                    onClick={dbsend}
                   >
                     Login
                   </button>
