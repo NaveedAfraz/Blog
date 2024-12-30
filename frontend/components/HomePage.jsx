@@ -44,6 +44,7 @@ export const HomePage = () => {
       .then((data) => setData(data.message))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+  console.log(data)
   return (
     <>
       <div className="app-wrapper">
