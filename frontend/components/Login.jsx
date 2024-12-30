@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./login.css";
-import "font-awesome/css/font-awesome.min.css";
+// import "font-awesome/css/font-awesome.min.css";
 import SignUp from "./Signup";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";

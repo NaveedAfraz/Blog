@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./login.css";
-import "font-awesome/css/font-awesome.min.css";
+// import "font-awesome/css/font-awesome.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"; // Import axios for HTTP requests
 
