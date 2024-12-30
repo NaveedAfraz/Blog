@@ -8,7 +8,7 @@ export default defineConfig({
     rollupOptions: {
       external: [
         "react-quill",
-        "moment",
+        
         "dompurify",
       ],
     },
