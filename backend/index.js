@@ -36,7 +36,9 @@ const storageOne = multer.diskStorage({
     cb(null, Date.now() + file.originalname); // Custom naming
   },
 });
-
+app.get("/api/data", (req, res) => {
+  res.json({ message: "Hello from the backend!" });
+});
 // Configuration for the second storage folder
 const storageTwo = multer.diskStorage({
   destination: function (req, file, cb) {
