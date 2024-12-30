@@ -8,7 +8,8 @@ export default defineConfig({
     rollupOptions: {
       external: [
         "font-awesome/css/font-awesome.min.css", // Externalize this module
-        "react-quill"
+        "react-quill",
+        "moment",
       ],
     },
   },
