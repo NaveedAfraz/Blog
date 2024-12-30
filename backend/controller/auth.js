@@ -1,4 +1,5 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
+
 const promisePool = require("../db.js");
 const nodemailer = require("nodemailer");
 //import bcrypt from "bcrypt";
