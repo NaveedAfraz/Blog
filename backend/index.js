@@ -15,12 +15,14 @@ app.use(
 );
 console.log('__dirname:', __dirname);
 console.log(path.join(__dirname, "../frontend/uploaduserimg"));
-app.use(
-  cors({
-    origin: "http://localhost:5173", // Replace with your frontend URL
-    credentials: true, // Allow credentials (cookies
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173", // Replace with your frontend URL
+//     credentials: true, // Allow credentials (cookies
+//   })
+// );
+const frontendURL = "https://blog-oxt4fflaj-naveed-afrazs-projects.vercel.app/"; // Replace with your actual frontend URL
+app.use(cors({ origin: frontendURL }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
