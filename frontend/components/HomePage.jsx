@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // import './HomePage.scss';
 
@@ -36,11 +36,20 @@ export const HomePage = () => {
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://blog-oxt4fflaj-naveed-afrazs-projects.vercel.app/}/api/data`) // Assuming the endpoint is /api/data
+      .then((response) => response.json())
+      .then((data) => setData(data.message))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
   return (
     <>
       <div className="app-wrapper">
         <div className="videoContainer">
           <div className="H-content">
+          <h1>Backend Data: {data}</h1>
             <h1>Blog with the best.</h1>
             <h3>
               Join a community of visionary writers and thinkers. Explore
