@@ -6,11 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: [
-        "react-quill",
-        
-        "dompurify",
-      ],
+      external: ["react-quill"],
     },
   },
 });
