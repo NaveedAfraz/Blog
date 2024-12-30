@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import "./login.css";
-import "font-awesome/css/font-awesome.min.css";
+import "/font-awesome/css/font-awesome.min.css";
 import Login from "./Login";
 import {
   BrowserRouter as Router,
