@@ -10,6 +10,7 @@ export default defineConfig({
         "font-awesome/css/font-awesome.min.css", // Externalize this module
         "react-quill",
         "moment",
+        "dompurify",
       ],
     },
   },
