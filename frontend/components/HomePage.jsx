@@ -36,7 +36,7 @@ export const HomePage = () => {
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const backendUrl = "https://blog-2-gxa8.onrender.com"; // Correct backend URL
