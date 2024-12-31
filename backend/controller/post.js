@@ -8,6 +8,10 @@ const getPosts = async (req, res) => {
   if (!cat) {
     return res.status(400).json({ message: "Category not provided" });
   }
+  promisePool
+    .getConnection()
+    .then(() => console.log("Database connection successful"))
+    .catch((err) => console.error("Database connection failed:", err));
 
   const query =
     cat == "All" ? "SELECT * FROM posts" : "SELECT * FROM posts WHERE cat = ?";
@@ -17,13 +21,15 @@ const getPosts = async (req, res) => {
       cat === "home" || !cat
         ? await promisePool.execute(query)
         : await promisePool.execute(query, [cat]);
-        if (data.length === 0) {
-          return res.status(404).json({ message: "No posts found" });
-        }
+    if (data.length === 0) {
+      return res.status(404).json({ message: "No posts found" });
+    }
     return res.status(200).json(data);
   } catch (err) {
     console.error("Error executing query:", err.message, err.stack);
-    return res.status(500).json({ message: "Internal Server Error due to idk", error: err });
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error due to idk", error: err });
   }
 };
 
@@ -35,16 +41,15 @@ const getPost = async (req, res) => {
   }
 
   const query =
-  "SELECT p.id, u.username, p.title, p.desc, p.img AS postImg, u.username, p.cat, p.date, p.status FROM UserAuth u JOIN posts p ON u.id = p.userid WHERE p.id = ?";
+    "SELECT p.id, u.username, p.title, p.desc, p.img AS postImg, u.username, p.cat, p.date, p.status FROM UserAuth u JOIN posts p ON u.id = p.userid WHERE p.id = ?";
 
- 
   // console.log(ID);
   const [data] = await promisePool.execute(query, [ID]);
   return res.status(200).json(data);
 };
 
 const deletePost = (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   const ID = req.params.id;
   console.log("ID received for deletion:", ID);
   const token = req.cookies.access_token;
@@ -89,10 +94,9 @@ const updatePost = (req, res) => {
     // console.log(postId);
     const q =
       "UPDATE posts SET `title`=?,`desc`=?,`img`=?,`cat`=? ,status = ? WHERE `id` = ? AND `userid` = ?";
-      const { title, desc, file, img, date, cat, status } =
-      req.body.postDetails
-      const values = [ title, desc, img, cat,status,postId,userInfo.id,];
-   /* const values = [
+    const { title, desc, file, img, date, cat, status } = req.body.postDetails;
+    const values = [title, desc, img, cat, status, postId, userInfo.id];
+    /* const values = [
       req.body.title,
       req.body.desc,
       req.body.img,
@@ -103,7 +107,7 @@ const updatePost = (req, res) => {
       userInfo.id,
     ];*/
     console.log(req.body.postDetails);
-   // console.log(values);
+    // console.log(values);
     // console.log("Query:", q);
     const [data] = await promisePool.execute(q, values);
     if (data.affectedRows === 0) {
@@ -126,7 +130,7 @@ const addPost = async (req, res) => {
   jwt.verify(token, "jwtkey", async (err, userInfo) => {
     const q =
       "INSERT INTO posts(`userid`, `title`, `desc`, `img`, `date`, `cat`) VALUES (?, ?, ?, ?, ?, ?)";
- 
+
     // const values = [
     //   userInfo.id,
     //   req.body.title,
@@ -149,8 +153,7 @@ const addPost = async (req, res) => {
     if (!postDetails.img) {
       return res.status(400).send("Image field is missing!");
     }
-    const { title, desc, file, img, date, cat, status } =
-      req.body.postDetails;
+    const { title, desc, file, img, date, cat, status } = req.body.postDetails;
     //     console.log(status);
     // console.log(title)
     if (!title || !desc || !img || !date || !cat) {
@@ -168,7 +171,7 @@ const addPost = async (req, res) => {
       console.log(data);
       return res.status(200).json("post uploaded draft");
     } else {
-      console.log("published excuted")
+      console.log("published excuted");
       // console.log(userInfo.id + "kk");
       // console.log(check);
       const [data] = await promisePool.execute(q, values);
