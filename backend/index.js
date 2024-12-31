@@ -22,7 +22,7 @@ console.log(path.join(__dirname, "../frontend/uploaduserimg"));
 //   })
 // );
 const allowedOrigins = [
-  "https://blog-mr7n8ey5r-naveed-afrazs-projects.vercel.app", // Your current frontend
+  "https://blog-b502exmya-naveed-afrazs-projects.vercel.app/home", // Your current frontend
   "https://blog-oxt4fflaj-naveed-afrazs-projects.vercel.app", // Any other allowed frontend URL
 ];
 
