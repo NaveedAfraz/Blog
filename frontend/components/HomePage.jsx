@@ -41,8 +41,16 @@ export const HomePage = () => {
   useEffect(() => {
     const backendUrl = "https://blog-2-gxa8.onrender.com"; // Correct backend URL
     fetch(`${backendUrl}/api/data`)
-      .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Fetched data:", data); // Log the fetched data
+        setData(data); // Set the data to state
+      })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
   console.log(data);
