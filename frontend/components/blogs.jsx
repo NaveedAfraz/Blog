@@ -21,13 +21,13 @@ const Blogs = () => {
         try {
           let res;
           if (sliced != "home") {
-            res = await axios.get(`http://${backendUrl}/cat${cat}`);
+            res = await axios.get(`${backendUrl}/cat${cat}`);
             if (JSON.stringify(res.data) !== JSON.stringify(posts)) {
               setPosts(res.data);
             }
             //  return setPosts(res.data);
           } else {
-            res = await axios.get(`http://${backendUrl}/cat/?cat=${sliced}`);
+            res = await axios.get(`${backendUrl}/cat/?cat=${sliced}`);
             console.log(res);
             if (JSON.stringify(res.data) !== JSON.stringify(posts)) {
               setPosts(res.data); // Only update if the posts have changed

@@ -25,13 +25,9 @@ export const AuthContextProvider = ({ children }) => {
   const login = async (inputs) => {
     // console.log(inputs);
     try {
-      const send = await axios.post(
-        "http://localhost:3006/auth/login",
-        inputs,
-        {
-          withCredentials: true,
-        }
-      );
+      const send = await axios.post(`${backendUrl}/auth/login`, inputs, {
+        withCredentials: true,
+      });
       console.log(send);
       console.log("data sended context");
       if (send.status === 200) {
