@@ -2,14 +2,13 @@ import axios from "axios";
 
 import { createContext, useEffect, useState } from "react";
 
-
 // import { useNavigate } from "react-router-dom";
 
 export const authContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   //  JSON.parse(localStorage.getItem("user"))
-  
+  const backendUrl = "https://your-backend-url.onrender.com";
   const [user, setUser] = useState();
   const [posts, setPosts] = useState([]);
   const [editshow, seteditshow] = useState(false);
@@ -21,46 +20,46 @@ export const AuthContextProvider = ({ children }) => {
   // const navigate = useNavigate();
   // console.log(user.temp_token);
   const [error, seterror] = useState("");
-  console.log(user)
+  console.log(user);
   // useEffect(() => {
-    const login = async (inputs) => {
-      // console.log(inputs);
-      try {
-        const send = await axios.post(
-          "http://localhost:3006/auth/login",
-          inputs,
-          {
-            withCredentials: true,
-          }
-        );
-        console.log(send);
-        console.log("data sended context");
-        if (send.status === 200) {
-          // navigate("/home");
-          console.log(send);
-          setUser(send.data);
-          seterror("");
-          setloggedIn(true);
+  const login = async (inputs) => {
+    // console.log(inputs);
+    try {
+      const send = await axios.post(
+        "http://localhost:3006/auth/login",
+        inputs,
+        {
+          withCredentials: true,
         }
-        // console.log(send.data);
-      } catch (error) {
-        seterror("invaild");
-        alert("Something went wrong with the login process.");
-        console.error(
-          "Login error:",
-          error.response ? error.response.data : error.message
-        );
+      );
+      console.log(send);
+      console.log("data sended context");
+      if (send.status === 200) {
+        // navigate("/home");
+        console.log(send);
+        setUser(send.data);
+        seterror("");
+        setloggedIn(true);
       }
-      // console.log(inputs);
-      console.log("hlo");
-    };
-  
+      // console.log(send.data);
+    } catch (error) {
+      seterror("invaild");
+      alert("Something went wrong with the login process.");
+      console.error(
+        "Login error:",
+        error.response ? error.response.data : error.message
+      );
+    }
+    // console.log(inputs);
+    console.log("hlo");
+  };
+
   // }, []);
   useEffect(() => {
     console.log("authCheck");
     const authCheck = async () => {
       try {
-        const res = await axios.get("http://localhost:3006/auth/authCheck", {
+        const res = await axios.get(`${backendUrl}/auth/authCheck`, {
           withCredentials: true, // it sends the cookie to backend
         });
         console.log("authCheck2");
@@ -78,7 +77,6 @@ export const AuthContextProvider = ({ children }) => {
         }
       }
     };
-
     authCheck();
   }, []);
 
@@ -92,7 +90,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     const send = await axios.post(
-      "http://localhost:3006/auth/logout",
+      `${backendUrl}/auth/logout`,
       { email: user.EMAIL, token: user.temp_token },
       {
         withCredentials: true,

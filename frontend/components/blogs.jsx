@@ -20,13 +20,13 @@ const Blogs = () => {
         try {
           let res;
           if (sliced != "home") {
-            res = await axios.get(`http://localhost:3006/cat${cat}`);
+            res = await axios.get(`http://${backendUrl}/cat${cat}`);
             if (JSON.stringify(res.data) !== JSON.stringify(posts)) {
               setPosts(res.data);
             }
             //  return setPosts(res.data);
           } else {
-            res = await axios.get(`http://localhost:3006/cat/?cat=${sliced}`);
+            res = await axios.get(`http://${backendUrl}/cat/?cat=${sliced}`);
             console.log(res);
             if (JSON.stringify(res.data) !== JSON.stringify(posts)) {
               setPosts(res.data); // Only update if the posts have changed
@@ -42,7 +42,7 @@ const Blogs = () => {
       getPosts();
     }
   }, [cat, posts]);
-console.log(posts)
+  console.log(posts);
   // useEffect(() => {
   //    setLoading(true)
   //   console.log(loading + "started")
@@ -60,7 +60,9 @@ console.log(posts)
   return (
     <>
       <nav className="nav2">
-        <Link to="/blog?cat=All" className="navbar-link">All</Link>
+        <Link to="/blog?cat=All" className="navbar-link">
+          All
+        </Link>
         <Link to="/blog?cat=art" className="navbar-link">
           Art
         </Link>
