@@ -6,6 +6,7 @@ import { authContext } from "../context/authContext";
 const Blogs = () => {
   // const [posts, setPosts] = useState([]);
   const { posts, setPosts, filteredPosts } = useContext(authContext);
+  const backendUrl = "https://blog-2-gxa8.onrender.com";
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const cat = location.search;

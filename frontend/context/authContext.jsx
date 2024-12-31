@@ -8,7 +8,7 @@ export const authContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   //  JSON.parse(localStorage.getItem("user"))
-  const backendUrl = "https://your-backend-url.onrender.com";
+  const backendUrl = "https://blog-2-gxa8.onrender.com";
   const [user, setUser] = useState();
   const [posts, setPosts] = useState([]);
   const [editshow, seteditshow] = useState(false);
