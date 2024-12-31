@@ -49,7 +49,7 @@ export const HomePage = () => {
       })
       .then((data) => {
         console.log("Fetched data:", data); // Log the fetched data
-        setData(data); // Set the data to state
+        setData([data]); // Set the data to state
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
