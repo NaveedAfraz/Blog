@@ -13,7 +13,7 @@ app.use(
   "/uploaduserimg",
   express.static(path.join(__dirname, "../frontend/uploaduserimg"))
 );
-console.log('__dirname:', __dirname);
+console.log("__dirname:", __dirname);
 console.log(path.join(__dirname, "../frontend/uploaduserimg"));
 // app.use(
 //   cors({
@@ -22,7 +22,13 @@ console.log(path.join(__dirname, "../frontend/uploaduserimg"));
 //   })
 // );
 const frontendURL = "https://blog-oxt4fflaj-naveed-afrazs-projects.vercel.app/"; // Replace with your actual frontend URL
-app.use(cors({ origin: frontendURL }));
+app.use(
+  cors({
+    origin: frontendURL,
+    methods: "GET,POST,PUT,DELETE", // Specify allowed methods
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
