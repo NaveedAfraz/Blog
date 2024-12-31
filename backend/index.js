@@ -27,11 +27,31 @@ console.log(path.join(__dirname, "../frontend/uploaduserimg"));
 // ];
 
 // Dynamic CORS options
+// app.use(
+//   cors({
+//     origin: "*", // Allow requests from any origin
+//     methods: ["GET", "POST", "PUT", "DELETE"], // Allow these HTTP methods
+//     credentials: true, // Optional: If you don't need cookies, you can set this to false
+//   })
+// );
+const cors = require("cors");
+
+const allowedOrigins = [
+  "https://blog-8hp6nvml1-naveed-afrazs-projects.vercel.app", // Frontend URL
+];
+
 app.use(
   cors({
-    origin: "*", // Allow requests from any origin
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow these HTTP methods
-    credentials: true, // Optional: If you don't need cookies, you can set this to false
+    origin: (origin, callback) => {
+      // Allow requests from allowed origins
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // This allows sending cookies and credentials
   })
 );
 
