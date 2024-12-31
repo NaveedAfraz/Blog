@@ -25,7 +25,7 @@ const frontendURL = "https://blog-oxt4fflaj-naveed-afrazs-projects.vercel.app/";
 app.use(
   cors({
     origin: frontendURL,
-    methods: "GET,POST,PUT,DELETE", // Specify allowed methods
+    methods: ["GET,POST,PUT,DELETE"], // Specify allowed methods
     allowedHeaders: "Content-Type,Authorization",
   })
 );

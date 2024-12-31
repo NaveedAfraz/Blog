@@ -39,18 +39,19 @@ export const HomePage = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(`https://blog-oxt4fflaj-naveed-afrazs-projects.vercel.app/}/api/data`) // Assuming the endpoint is /api/data
+    const backendUrl = "https://blog-2-gxa8.onrender.com"; // Correct backend URL
+    fetch(`${backendUrl}/api/data`)
       .then((response) => response.json())
-      .then((data) => setData(data.message))
+      .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
-  console.log(data)
+  console.log(data);
   return (
     <>
       <div className="app-wrapper">
         <div className="videoContainer">
           <div className="H-content">
-          <h1>Backend Data: {data}</h1>
+            <h1>Backend Data: {data}</h1>
             <h1>Blog with the best.</h1>
             <h3>
               Join a community of visionary writers and thinkers. Explore
