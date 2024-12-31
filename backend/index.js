@@ -21,26 +21,17 @@ console.log(path.join(__dirname, "../frontend/uploaduserimg"));
 //     credentials: true, // Allow credentials (cookies
 //   })
 // );
-const allowedOrigins = [
-  "https://blog-b502exmya-naveed-afrazs-projects.vercel.app/home", // Your current frontend
-  "https://blog-oxt4fflaj-naveed-afrazs-projects.vercel.app", // Any other allowed frontend URL
-];
+// const allowedOrigins = [
+//   "https://blog-b502exmya-naveed-afrazs-projects.vercel.app/home", // Your current frontend
+//   "https://blog-oxt4fflaj-naveed-afrazs-projects.vercel.app", // Any other allowed frontend URL
+// ];
 
 // Dynamic CORS options
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps or Postman)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    origin: "*", // Allow requests from any origin
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allow these HTTP methods
+    credentials: true, // Optional: If you don't need cookies, you can set this to false
   })
 );
 
