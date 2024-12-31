@@ -36,21 +36,20 @@ console.log(path.join(__dirname, "../frontend/uploaduserimg"));
 // );
 
 const allowedOrigins = [
-  "https://blog-8hp6nvml1-naveed-afrazs-projects.vercel.app", // Frontend URL
+  "https://blog-iu6byflqu-naveed-afrazs-projects.vercel.app", // Frontend URL
 ];
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests from allowed origins
       if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
+        callback(null, true); // Allow the request
       } else {
-        callback(new Error("Not allowed by CORS"));
+        callback(new Error("Not allowed by CORS")); // Block the request
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // This allows sending cookies and credentials
+    methods: ["GET", "POST", "PUT", "DELETE"], // HTTP methods you allow
+    credentials: true, // Include credentials (cookies, headers, etc.)
   })
 );
 
