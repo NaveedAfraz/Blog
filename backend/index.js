@@ -34,7 +34,6 @@ console.log(path.join(__dirname, "../frontend/uploaduserimg"));
 //     credentials: true, // Optional: If you don't need cookies, you can set this to false
 //   })
 // );
-const cors = require("cors");
 
 const allowedOrigins = [
   "https://blog-8hp6nvml1-naveed-afrazs-projects.vercel.app", // Frontend URL
