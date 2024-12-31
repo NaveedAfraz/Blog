@@ -62,7 +62,6 @@ export const HomePage = () => {
             {data.map((item, index) => (
               <div key={index}>bbb{item.message}</div>
             ))}
-
             <h1>Blog with the best.</h1>
             <h3>
               Join a community of visionary writers and thinkers. Explore
