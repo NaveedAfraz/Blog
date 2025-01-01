@@ -62,8 +62,9 @@ const login = async (req, res) => {
   // const q = "SELECT PASSWORD FROM userauth WHERE EMAIL = ?";
   const { email, password } = req.body;
   const q = "SELECT * FROM UserAuth WHERE EMAIL = ?";
-
+console.log("jlo")
   try {
+    
     const [result] = await promisePool.execute(q, [email]); // Execute the query with email
   //  console.log(result);
 
