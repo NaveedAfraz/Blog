@@ -39,7 +39,7 @@ export const HomePage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const backendUrl = "https://blog-2-gxa8.onrender.com"; // Correct backend URL
+    const backendUrl = "https://blog-3-mfgj.onrender.com"; // Correct backend URL
     fetch(`${backendUrl}/api/data`)
       .then((response) => {
         if (!response.ok) {
