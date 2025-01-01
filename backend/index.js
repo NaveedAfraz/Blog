@@ -55,7 +55,7 @@ app.use(
 
 
 // Your routes
-app.get("/api/data", (req, res) => {
+app.get("/", (req, res) => {
   res.json({ message: "Hello from the backend!" });
 });
 

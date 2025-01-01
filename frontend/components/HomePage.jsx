@@ -40,7 +40,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     const backendUrl = "https://blog-3-mfgj.onrender.com"; // Correct backend URL
-    fetch(`${backendUrl}/api/data`)
+    fetch(`${backendUrl}/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
