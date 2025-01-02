@@ -1,16 +1,19 @@
 const mysql = require("mysql2");
-require("dotenv").config(); // Load environment variables from .env file
+const fs = require("fs");
+require("dotenv").config(); // Load environment variables
 
-const { DATABASE_URL, DB_CONNECTION_LIMIT } = process.env;
+const { DATABASE_URL, DB_CONNECTION_LIMIT = 10 } = process.env;
 
 let pool;
 
 if (DATABASE_URL) {
   console.log("Using DATABASE_URL for MySQL connection.");
+
   pool = mysql.createPool({
     uri: DATABASE_URL, // Use the DATABASE_URL directly
-    connectionLimit: DB_CONNECTION_LIMIT || 10, // Set default connection limit
+    connectionLimit: parseInt(DB_CONNECTION_LIMIT, 10),
     ssl: {
+      ca: fs.readFileSync("../ca (1).pem"), // Reference the CA file in the root directory
       rejectUnauthorized: true, // Enforce SSL for secure connections
     },
   });
