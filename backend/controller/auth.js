@@ -16,7 +16,7 @@ const register = async (req, res) => {
   const { fullName, email, password } = body;
   // console.log(body);
   // // res.json(body);
-  const q = "INSERT INTO UserAuth (USERNAME, EMAIL, PASSWORD) VALUES (?, ?, ?)";
+  const q = "INSERT INTO userauth (USERNAME, EMAIL, PASSWORD) VALUES (?, ?, ?)";
   const hashedPassword = await bcrypt.hash(password, 10); // Use await to ensure password is hashed
 
   try {

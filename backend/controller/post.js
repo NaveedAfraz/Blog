@@ -45,7 +45,7 @@ const getPost = async (req, res) => {
   }
 
   const query =
-    "SELECT p.id, u.username, p.title, p.desc, p.img AS postImg, u.username, p.cat, p.date, p.status FROM UserAuth u JOIN posts p ON u.id = p.userid WHERE p.id = ?";
+    "SELECT p.id, u.username, p.title, p.desc, p.img AS postImg, u.username, p.cat, p.date, p.status FROM userauth u JOIN posts p ON u.id = p.userid WHERE p.id = ?";
 
   // console.log(ID);
   const [data] = await promisePool.execute(query, [ID]);
