@@ -98,9 +98,10 @@ const EditProfile = () => {
         }
       );
       console.log("running2");
-      console.log(res.data?.user);
-      if (res.data.status === 200) {
-        setUser(res.data?.USERNAME);
+      console.log("this is the data i got from backend " ,res.data?.user);
+      if (res.status === 200) {
+        console.log("Setting user changed", res.data?.user);
+        setUser(res.data?.user);
         // console.log(
         //   "Setting popup message:",
         //   "The details were updated, redirecting to HomePage..."
