@@ -17,7 +17,7 @@ console.log("MYSQL_USER:", MYSQL_USER);
 console.log("MYSQL_PASSWORD:", MYSQL_PASSWORD ? "******" : "Not provided");
 console.log("MYSQL_DATABASE:", MYSQL_DATABASE);
 console.log("MYSQL_PORT:", MYSQL_PORT);
-
+console.log(DB_CONNECTION_LIMIT, "numberss");
 let pool;
 
 // Create a connection pool using the provided environment variables
