@@ -61,7 +61,7 @@ const login = async (req, res) => {
 
   // const q = "SELECT PASSWORD FROM userauth WHERE EMAIL = ?";
   const { email, password } = req.body;
-  const q = "SELECT * FROM UserAuth WHERE EMAIL = ?";
+  const q = "SELECT * FROM userauth WHERE EMAIL = ?";
 console.log("jlo")
   try {
     

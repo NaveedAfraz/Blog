@@ -67,7 +67,7 @@ export default function Menu({ cat }) {
                         <h2 className="post-title">{post.title}</h2>
                         <Link
                           className="post-link"
-                          to={`/cat=${cat}/post/${post.id}`}
+                          to={`/blog/cat=${cat}/post/${post.id}`}
                         >
                           Read More
                         </Link>
