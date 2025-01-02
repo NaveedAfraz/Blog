@@ -99,7 +99,7 @@ const Blogs = () => {
                 className={`post ${index % 2 === 0 ? "left" : "right"}`}
                 key={post.id}
               >
-                <img src={`${backendUrl}/upload/${post.img}`} alt="post image" />
+                <img src={`${backendUrl}/upload/${post.img}`} alt="t image" />
                 <div className="post-content">
                   <h2>{post.title}</h2>
                   <p>{post.desc}</p>
