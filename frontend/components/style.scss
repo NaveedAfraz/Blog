@@ -473,9 +473,11 @@ html {
     gap: 10px; /* Adjust spacing between links */
     width: 100%; /* Take full width */
   }
-
- .navbar-button .navbar-link {
- 
+  .navbar-button {
+    width: 26%; /* Make links take full width */
+    text-align: center;
+  }
+  .navbar-link {
     width: 26%; /* Make links take full width */
     text-align: center; /* Center text inside links */
   }
@@ -484,8 +486,15 @@ html {
     text-align: center;
   }
   .navbar-write-link {
-    width: 100%; /* Make the Write link take full width */
-    text-align: center;
+    margin: 2px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    border: none;
+    outline: none;
   }
 }
 
