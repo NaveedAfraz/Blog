@@ -27,7 +27,7 @@ pool = mysql.createPool({
   user: MYSQL_USER,
   password: MYSQL_PASSWORD,
   database: MYSQL_DATABASE,
-  connectionLimit: parseInt(DB_CONNECTION_LIMIT, 10),
+  connectionLimit: DB_CONNECTION_LIMIT,
   ssl: {
     rejectUnauthorized: true, // Enforce SSL for secure connections
   },
