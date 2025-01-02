@@ -12,18 +12,18 @@ const app = express();
 const PORT = process.env.PORT || 3006;
 
 // CORS Configuration
-const allowedOrigins = ["https://your-frontend-domain.com", "http://localhost:3000"];
+// const allowedOrigins = ["https://your-frontend-domain.com", "http://localhost:3000"];
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
+      // Allow requests with no origin (like Postman or mobile apps)
+      if (!origin) return callback(null, true);
+
+      // Dynamically allow any origin
+      callback(null, true);
     },
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    credentials: true, // Allow credentials
   })
 );
 
