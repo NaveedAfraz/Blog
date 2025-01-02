@@ -8,19 +8,13 @@ const getPosts = async (req, res) => {
   if (!cat) {
     return res.status(400).json({ message: "Category not provided" });
   }
-
-  promisePool
-    .getConnection()
-    .then(() => console.log("Database connection successful"))
-    .catch((err) => {
-      console.error("Database connection failed:", {
-        message: err.message,
-        stack: err.stack,
-      });
-    });
+  console.log("running");
 
   const query =
     cat == "All" ? "SELECT * FROM posts" : "SELECT * FROM posts WHERE cat = ?";
+  console.log("Query:", query);
+  console.log("Category:", cat);
+  console.log("Offset/Error source details");
 
   try {
     const [data] =
