@@ -32,10 +32,14 @@ const getPosts = async (req, res) => {
     }
     return res.status(200).json(data);
   } catch (err) {
-    console.error("Error executing query:", err.message, err.stack);
-    return res
-      .status(500)
-      .json({ message: "Internal Server Error due to idk", error: err });
+    console.error("Error executing query:", {
+      message: err.message,
+      stack: err.stack,
+    });
+    return res.status(500).json({
+      message: "Internal Server Error while fetching posts",
+      error: err.message,
+    });
   }
 };
 
