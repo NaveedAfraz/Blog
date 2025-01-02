@@ -84,7 +84,7 @@ const EditProfile = () => {
       image: imgUrl,
     };
     console.log("Data to send", data);
-    setUser(data);
+  //  setUser(data);
     try {
       const res = await axios.put(
         `${backendUrl}/user/userBlog/${user.ID}`,

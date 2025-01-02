@@ -4,7 +4,8 @@ import { authContext } from "../context/authContext";
 import axios from "axios";
 
 const ProfileCard = () => {
-  const { user, seteditshow, setUser, setloggedIn ,backendUrl} = useContext(authContext);
+  const { user, seteditshow, setUser, setloggedIn, backendUrl } =
+    useContext(authContext);
 
   const handleEdit = () => {
     seteditshow(true);
@@ -16,12 +17,9 @@ const ProfileCard = () => {
     }
     const authCheck = async () => {
       try {
-        const res = await axios.get(
-          `${backendUrl}/auth/authCheck`,
-          {
-            withCredentials: true, // it sends the cookie to backend
-          }
-        );
+        const res = await axios.get(`${backendUrl}/auth/authCheck`, {
+          withCredentials: true, // it sends the cookie to backend
+        }); 
         console.log("authCheck2");
         // console.log(res);
         console.log(res.data.data[0]);
@@ -42,9 +40,7 @@ const ProfileCard = () => {
   }, []);
   // Dynamically generate the image URL
   const imageUrl = user?.userimg
-    ? `${backendUrl}/uploaduserimg/${encodeURIComponent(
-        user?.userimg
-      )}`
+    ? `${backendUrl}/uploaduserimg/${encodeURIComponent(user?.userimg)}`
     : "https://via.placeholder.com/150";
   // console.log(imageUrl);
   // console.log(user.userimg)
