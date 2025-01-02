@@ -1,37 +1,23 @@
 const mysql = require("mysql2");
 require("dotenv").config(); // Load environment variables from .env file
 
-const {
-  MYSQL_HOST,
-  MYSQL_USER,
-  MYSQL_PASSWORD,
-  MYSQL_DATABASE, // Targeting the 'blogs' database
-  MYSQL_PORT, // Default MySQL port if not provided
-  DB_CONNECTION_LIMIT,
-} = process.env;
+const { DATABASE_URL, DB_CONNECTION_LIMIT } = process.env;
 
-// Debugging logs for configuration
-console.log("Using individual MySQL environment variables for connection.");
-console.log("MYSQL_HOST:", MYSQL_HOST);
-console.log("MYSQL_USER:", MYSQL_USER);
-console.log("MYSQL_PASSWORD:", MYSQL_PASSWORD ? "******" : "Not provided");
-console.log("MYSQL_DATABASE:", MYSQL_DATABASE);
-console.log("MYSQL_PORT:", MYSQL_PORT);
-console.log(DB_CONNECTION_LIMIT, "numberss");
 let pool;
 
-// Create a connection pool using the provided environment variables
-pool = mysql.createPool({
-  host: MYSQL_HOST,
-  port: MYSQL_PORT,
-  user: MYSQL_USER,
-  password: MYSQL_PASSWORD,
-  database: MYSQL_DATABASE,
-  connectionLimit: DB_CONNECTION_LIMIT,
-  ssl: {
-    rejectUnauthorized: true, // Enforce SSL for secure connections
-  },
-});
+if (DATABASE_URL) {
+  console.log("Using DATABASE_URL for MySQL connection.");
+  pool = mysql.createPool({
+    uri: DATABASE_URL, // Use the DATABASE_URL directly
+    connectionLimit: DB_CONNECTION_LIMIT || 10, // Set default connection limit
+    ssl: {
+      rejectUnauthorized: true, // Enforce SSL for secure connections
+    },
+  });
+} else {
+  console.error("DATABASE_URL is not defined in the environment variables.");
+  process.exit(1); // Exit the process if the DATABASE_URL is not set
+}
 
 // Test the connection
 pool.getConnection((err, connection) => {
@@ -39,8 +25,6 @@ pool.getConnection((err, connection) => {
     console.error("Database connection failed:", err.message);
   } else {
     console.log("Connected to the MySQL database successfully.");
-
-    // Query to check the connected database
     connection.query("SELECT DATABASE();", (queryErr, results) => {
       if (queryErr) {
         console.error("Error executing query:", queryErr.message);
