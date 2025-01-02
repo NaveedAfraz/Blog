@@ -84,6 +84,7 @@ const EditProfile = () => {
       image: imgUrl,
     };
     console.log("Data to send", data);
+    console.log(user)
     setUser(data);
     try {
       console.log("running");
@@ -99,7 +100,7 @@ const EditProfile = () => {
       console.log("running2");
       console.log(res.data?.user);
       if (res.data.status === 200) {
-        setUser(res.data?.user);
+        setUser(res.data?.USERNAME);
         // console.log(
         //   "Setting popup message:",
         //   "The details were updated, redirecting to HomePage..."
