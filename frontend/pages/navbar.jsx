@@ -6,9 +6,17 @@ import { authContext } from "../context/authContext";
 
 const Navbar = () => {
   const { user, logout, login, seteditshow } = useContext(authContext);
+  const [dropdownActive, setDropdownActive] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownActive((prev) => !prev);
+  };
   return (
     <nav className="navbar">
       <img src={logo} alt="Logo" className="navbar-logo" />
+      <button className="dropdown-toggle" onClick={toggleDropdown}>
+        ☰
+      </button>
       <div className="navbar-links">
         <Link to="/home" className="navbar-link">
           Home

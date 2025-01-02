@@ -398,93 +398,37 @@ html {
   align-items: center;
   height: 10vh;
   padding: 10px;
-}
-
-.navbar-logo {
-  width: 50px;
-  height: 70px;
-  margin-left: 40px;
-  object-fit: cover;
-}
-
-.navbar-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.navbar-link {
-  margin: 2px;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-  border: none;
-  outline: none;
-}
-
-.navbar-link:hover {
-  background-color: #007bff;
-  color: whitesmoke;
-}
-
-.navbar-link.active {
-  background-color: #007bff;
-}
-.navbar-user {
-  @include navbtnsStyle;
-}
-.navbar-button {
-  @include navbtnsStyle;
-}
-.navbar-write-link {
-  text-decoration: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.navbar-write-link:hover {
-  background-color: #007bff;
-  color: whitesmoke;
-}
-
-/* Media Query for Smaller Screens */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the left */
-    height: auto; /* Allow height to adjust automatically */
-  }
 
   .navbar-logo {
-    margin-left: 0; /* Align logo on the left */
-    margin-bottom: 10px; /* Add spacing between the logo and the links */
+    width: 50px;
+    height: 70px;
+    margin-left: 40px;
+    object-fit: cover;
   }
 
   .navbar-links {
-    flex-direction: column; /* Stack links vertically */
-    align-items: center; /* Center the links */
-    gap: 10px; /* Adjust spacing between links */
-    width: 100%; /* Take full width */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      display: none; // Initially hidden for smaller screens
+      flex-direction: column; // Stack links vertically
+      align-items: center; // Center the links
+      gap: 10px; // Adjust spacing between links
+      width: 100%; // Take full width
+      position: absolute;
+      top: 70px; // Adjust based on navbar height
+      left: 0;
+      background-color: #ffffff; // Dropdown background
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); // Dropdown shadow
+      z-index: 100;
+    }
   }
-  .navbar-button {
-    width: 26%; /* Make links take full width */
-    text-align: center;
-  }
-  .navbar-link {
-    width: 26%; /* Make links take full width */
-    text-align: center; /* Center text inside links */
-  }
-  .navbar-user {
-    width: 26%;
-    text-align: center;
-  }
+
+  .navbar-link,
+  .navbar-button,
+  .navbar-user,
   .navbar-write-link {
     margin: 2px;
     padding: 8px 12px;
@@ -493,10 +437,44 @@ html {
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    text-align: center;
+
+    &:hover {
+      background-color: #007bff;
+      color: whitesmoke;
+    }
+  }
+
+  .navbar-button,
+  .navbar-user {
+    width: 26%;
+  }
+
+  .navbar-write-link {
+    @media (max-width: 768px) {
+      width: 26%;
+    }
+  }
+
+  .dropdown-toggle {
+    display: none; // Hidden for larger screens
+    background: none;
     border: none;
-    outline: none;
+    font-size: 20px;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      display: block; // Visible for smaller screens
+      margin-left: auto;
+      margin-right: 10px;
+    }
+  }
+
+  .dropdown-links-active {
+    display: flex !important; // Show links when dropdown is active
   }
 }
+
 
 // @media (max-width: 768px) {
 //   .navbar {
