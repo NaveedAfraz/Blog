@@ -175,6 +175,7 @@ const EditProfile = () => {
                   setPopupMessage(
                     "The details were updated, redirecting to HomePage..."
                   ); // Show the popup
+                  setUser();
                   handleSave(); // Call the handleSave function
                 }}
                 type="button" // Change type to 'button' to prevent form submission

@@ -25,7 +25,7 @@ const ProfileCard = () => {
         console.log("authCheck2");
         // console.log(res);
         console.log(res.data.data[0]);
-        setUser(res.data.data[0]); // Restore user details
+        //setUser(res.data.data[0]); // Restore user details
         setloggedIn(true);
       } catch (err) {
         console.log("Session expired or invalid", err);
