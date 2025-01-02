@@ -100,7 +100,7 @@ const Blogs = () => {
                 key={post.id}
               >
                 {console.log(`${backendUrl}/upload/${post.img}`)}
-                <img src={`${backendUrl}/upload/${post.img}`} alt="t image" />
+                <img src={`${backendUrl}/upload/${post.img}`} alt="Uploaded Image" />
                 <div className="post-content">
                   <h2>{post.title}</h2>
                   <p>{post.desc}</p>

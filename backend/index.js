@@ -31,17 +31,26 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use("/upload", express.static(path.join(__dirname, "upload")));
+app.use("/upload", express.static(path.join(__dirname, "../frontend/upload")));
 app.use("/uploaduserimg", express.static(path.join(__dirname, "../frontend/uploaduserimg")));
+
 
 // Multer Configurations
 const storageOne = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, path.join(__dirname, "upload")),
-  filename: (req, file, cb) => cb(null, Date.now() + file.originalname),
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "../frontend/upload"));
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
 const storageTwo = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, path.join(__dirname, "uploaduserimg")),
-  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "../frontend/uploaduserimg"));
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ["image/jpeg", "image/png"];
@@ -49,6 +58,8 @@ const fileFilter = (req, file, cb) => {
 };
 const uploadOne = multer({ storage: storageOne, fileFilter });
 const uploadTwo = multer({ storage: storageTwo, fileFilter });
+console.log("Upload path:", path.join(__dirname, "../frontend/upload"));
+console.log("UploadUserImg path:", path.join(__dirname, "../frontend/uploaduserimg"));
 
 // Routes
 app.post("/upload", uploadOne.single("file"), (req, res) => {
