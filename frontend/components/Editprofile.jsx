@@ -84,8 +84,9 @@ const EditProfile = () => {
       image: imgUrl,
     };
     console.log("Data to send", data);
-  //  setUser(data);
+    setUser(data);
     try {
+      console.log("running");
       const res = await axios.put(
         `${backendUrl}/user/userBlog/${user.ID}`,
         data,
@@ -95,6 +96,7 @@ const EditProfile = () => {
           },
         }
       );
+      console.log("running2");
       console.log(res.data?.user);
       if (res.data.status === 200) {
         setUser(res.data?.user);
@@ -175,7 +177,7 @@ const EditProfile = () => {
                   setPopupMessage(
                     "The details were updated, redirecting to HomePage..."
                   ); // Show the popup
-                  
+
                   handleSave(); // Call the handleSave function
                 }}
                 type="button" // Change type to 'button' to prevent form submission
