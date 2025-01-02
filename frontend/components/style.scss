@@ -490,6 +490,8 @@ html {
     flex-direction: column; // Stack items vertically
     align-items: flex-start; // Align items to the left
     height: auto; // Allow height to adjust automatically
+    border: none;
+    outline: none;
   }
 
   .navbar-logo {
