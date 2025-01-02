@@ -475,10 +475,13 @@ html {
   }
 
   .navbar-link {
-    width: 30%; /* Make links take full width */
+    width: 26%; /* Make links take full width */
     text-align: center; /* Center text inside links */
   }
-
+  .navbar-user {
+    width: 26%;
+    text-align: center;
+  }
   .navbar-write-link {
     width: 100%; /* Make the Write link take full width */
     text-align: center;
