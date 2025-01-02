@@ -9,6 +9,7 @@ const users = require("./routes/user");
 const app = express();
 const path = require("path");
 
+app.use('/upload', express.static(path.join(__dirname, 'uploads')));
 app.use(
   "/uploaduserimg",
   express.static(path.join(__dirname, "../frontend/uploaduserimg"))
