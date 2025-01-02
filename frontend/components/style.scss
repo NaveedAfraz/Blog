@@ -475,6 +475,35 @@ html {
   }
 }
 
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; // Stack items vertically
+    align-items: flex-start; // Align items to the left
+    height: auto; // Allow height to adjust automatically
+  }
+
+  .navbar-logo {
+    margin-left: 0; // Align logo on the left
+    margin-bottom: 10px; // Add spacing between the logo and the links
+  }
+
+  .navbar-links {
+    flex-direction: column; // Stack links vertically
+    align-items: center; // Center the links
+    gap: 10px; // Adjust spacing between links
+    width: 100%; // Take full width
+  }
+
+  .navbar-link,
+  .navbar-button,
+  .navbar-user,
+  .navbar-write-link {
+    width: 80%; // Make links take most of the width
+    text-align: center; // Center text inside links
+  }
+}
+
 
 // @media (max-width: 768px) {
 //   .navbar {
