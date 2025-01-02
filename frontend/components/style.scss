@@ -462,7 +462,15 @@ html {
     border: none;
     font-size: 20px;
     cursor: pointer;
-
+    right: 10px;
+    display: block;
+    top: 24px;
+    margin-left: auto;
+    /* margin-bottom: 100px; */
+    position: absolute;
+ 
+    z-index: 2;
+    margin-right: 10px;
     @media (max-width: 768px) {
       display: block; // Visible for smaller screens
       margin-left: auto;
@@ -499,7 +507,7 @@ html {
   .navbar-button,
   .navbar-user,
   .navbar-write-link {
-    width: 80%; // Make links take most of the width
+    width: 27%; // Make links take most of the width
     text-align: center; // Center text inside links
   }
 }
