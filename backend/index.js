@@ -26,7 +26,7 @@ app.use(
     credentials: true, // Allow credentials
   })
 );
-
+const backendUrl = "https://blog-3-mfgj.onrender.com";
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -90,5 +90,5 @@ app.use((err, req, res, next) => {
 
 // Start Server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://${backendurl}:${PORT}`);
+  console.log(`Server is running on ${backendUrl}`);
 });
