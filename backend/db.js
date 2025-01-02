@@ -6,8 +6,8 @@ const {
   MYSQL_USER,
   MYSQL_PASSWORD,
   MYSQL_DATABASE, // Targeting the 'blogs' database
-  MYSQL_PORT = "3306", // Default MySQL port if not provided
-  DB_CONNECTION_LIMIT = "100",
+  MYSQL_PORT, // Default MySQL port if not provided
+  DB_CONNECTION_LIMIT,
 } = process.env;
 
 // Debugging logs for configuration
