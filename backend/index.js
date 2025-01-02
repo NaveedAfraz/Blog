@@ -53,7 +53,6 @@ app.use(
   })
 );
 
-
 // Your routes
 app.get("/", (req, res) => {
   res.json({ message: "Hello from the backend!" });
@@ -66,7 +65,7 @@ app.use(express.urlencoded({ extended: true }));
 // Configuration for the first storage folder
 const storageOne = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../frontend/upload"); // Folder for first type of files
+    cb(null, path.join(__dirname, "../frontend/upload")); // Folder for first type of files
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname); // Custom naming
