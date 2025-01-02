@@ -130,61 +130,63 @@ const addPost = async (req, res) => {
   const token = req.cookies.access_token;
   // console.log(token);
   if (!token) return res.status(401).json("Not authenticated!");
-
-  jwt.verify(token, "jwtkey", async (err, userInfo) => {
-    const q =
-      "INSERT INTO posts(`userid`, `title`, `desc`, `img`, `date`, `cat`) VALUES (?, ?, ?, ?, ?, ?)";
-
-    // const values = [
-    //   userInfo.id,
-    //   req.body.title,
-    //   req.body.desc,
-    //   req.body.img,
-    //   req.body.date,
-    //   req.body.cat,
-    // ];
-    // const check = values.map((value) => {
-    //   if (value == undefined || value == null || value == {}) {
-    //     return res
-    //       .status(404)
-    //       .json("some of the values are undefiend or null!");
-    //   }
-    // });
-    console.log(req.body);
-    //  const image = req.body.postDetails.file.name
-    //  console.log(image)
-    const { postDetails } = req.body;
-    if (!postDetails.img) {
-      return res.status(400).send("Image field is missing!");
-    }
-    const { title, desc, file, img, date, cat, status } = req.body.postDetails;
-    //     console.log(status);
-    // console.log(title)
-    if (!title || !desc || !img || !date || !cat) {
-      return res.status(400).json("Some of the required fields are missing!");
-    }
-    const values = [userInfo.id, title, desc, img, date, cat];
-
-    if (status == "draft") {
-      console.log("draft excuted");
-      const values2 = [userInfo.id, title, desc, img, date, cat, status];
-
-      const q2 =
-        "INSERT INTO posts(`userid`, `title`, `desc`, `img`, `date`, `cat`,`status`) VALUES (?, ?, ?, ?, ?, ?,?)";
-      const [data] = await promisePool.execute(q2, values2);
-      console.log(data);
-      return res.status(200).json("post uploaded draft");
-    } else {
-      console.log("published excuted");
-      // console.log(userInfo.id + "kk");
-      // console.log(check);
-      const [data] = await promisePool.execute(q, values);
-      if (data.affectedRows === 0) {
-        // return res.status(404).json("Post not found.");
-        return res.status(500).json("error uploading the post");
+  try {
+    jwt.verify(token, "jwtkey", async (err, userInfo) => {
+      const q =
+        "INSERT INTO posts(`userid`, `title`, `desc`, `img`, `date`, `cat`) VALUES (?, ?, ?, ?, ?, ?)";
+      // const values = [
+      //   userInfo.id,
+      //   req.body.title,
+      //   req.body.desc,
+      //   req.body.img,
+      //   req.body.date,
+      //   req.body.cat,
+      // ];
+      // const check = values.map((value) => {
+      //   if (value == undefined || value == null || value == {}) {
+      //     return res
+      //       .status(404)
+      //       .json("some of the values are undefiend or null!");
+      //   }
+      // });
+      console.log(req.body);
+      //  const image = req.body.postDetails.file.name
+      //  console.log(image)
+      const { postDetails } = req.body;
+      if (!postDetails.img) {
+        return res.status(400).send("Image field is missing!");
       }
-      return res.status(200).json("post uploaded published");
-    }
-  });
+      const { title, desc, file, img, date, cat, status } =
+        req.body.postDetails;
+      //     console.log(status);
+      // console.log(title)
+      if (!title || !desc || !img || !date || !cat) {
+        return res.status(400).json("Some of the required fields are missing!");
+      }
+      const values = [userInfo.id, title, desc, img, date, cat];
+      if (status == "draft") {
+        console.log("draft excuted");
+        const values2 = [userInfo.id, title, desc, img, date, cat, status];
+        const q2 =
+          "INSERT INTO posts(`userid`, `title`, `desc`, `img`, `date`, `cat`,`status`) VALUES (?, ?, ?, ?, ?, ?,?)";
+        const [data] = await promisePool.execute(q2, values2);
+        console.log(data);
+        return res.status(200).json("post uploaded draft");
+      } else {
+        console.log("published excuted");
+        // console.log(userInfo.id + "kk");
+        // console.log(check);
+        const [data] = await promisePool.execute(q, values);
+        if (data.affectedRows === 0) {
+          // return res.status(404).json("Post not found.");
+          return res.status(500).json("error uploading the post");
+        }
+        return res.status(200).json("post uploaded published");
+      }
+    });
+  } catch {
+    res.status(401).json("some kind of error")
+    console.log("err")
+  }
 };
 module.exports = { getPosts, getPost, deletePost, updatePost, addPost };
