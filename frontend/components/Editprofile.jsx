@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
-  const { setUser, user, backendUrl } = useContext(authContext);
+  const { setUser, user, backendUrl ,seteditshow} = useContext(authContext);
   const [editUsername, seteditUsername] = useState(user?.USERNAME || "");
   const [editEmail, seteditEmail] = useState(user?.EMAIL || "");
 
@@ -98,8 +98,8 @@ const EditProfile = () => {
         }
       );
       console.log("running2");
-      console.log(res)
-      console.log("this is the data i got from backend " ,res.data?.user);
+      console.log(res);
+      console.log("this is the data i got from backend ", res.data?.user);
       if (res.status === 200) {
         console.log("Setting user changed", res.data?.user);
         setUser(res.data?.user);
@@ -189,7 +189,12 @@ const EditProfile = () => {
                 Save Changes
               </button>
 
-              <Link type="button" className="cancel-button" to="/profile">
+              <Link
+                type="button"
+                className="cancel-button"
+                to="/profile"
+                onClick={() => seteditshow(false)}
+              >
                 Cancel
               </Link>
             </div>

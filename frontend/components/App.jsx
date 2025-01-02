@@ -50,7 +50,7 @@ function App() {
           <Route path="/blog" element={<Blogs />} />
           <Route path="/blog/:cat/post/:id" element={<Single />} />
           <Route
-            path="profile"
+            path="/profile"
             element={editshow ? <EditProfile /> : <UserProfile />}
           />
           <Route path="/write" element={<Write />}></Route>
