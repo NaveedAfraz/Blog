@@ -398,7 +398,9 @@ html {
   align-items: center;
   height: 10vh;
   padding: 10px;
-
+.dropdown-toggle {
+    display: none;
+  }
   .navbar-logo {
     width: 50px;
     height: 70px;
@@ -493,7 +495,9 @@ html {
     border: none;
     outline: none;
   }
-
+  .dropdown-toggle {
+    display: block; // Show the dropdown toggle
+  }
   .navbar-logo {
     margin-left: 0; // Align logo on the left
     margin-bottom: 10px; // Add spacing between the logo and the links
