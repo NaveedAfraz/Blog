@@ -17,7 +17,9 @@ const Navbar = () => {
       <button className="dropdown-toggle" onClick={toggleDropdown}>
         ☰
       </button>
-      <div className="navbar-links">
+      <div
+        className={`navbar-links ${dropdownActive ? "dropdown-links-active" : ""}`}
+      >
         <Link to="/home" className="navbar-link">
           Home
         </Link>
