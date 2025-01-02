@@ -433,7 +433,12 @@ html {
 .navbar-link.active {
   background-color: #007bff;
 }
-
+.navbar-user {
+  @include navbtnsStyle;
+}
+.navbar-button {
+  @include navbtnsStyle;
+}
 .navbar-write-link {
   text-decoration: none;
   padding: 8px 12px;
@@ -470,7 +475,7 @@ html {
   }
 
   .navbar-link {
-    width: 100%; /* Make links take full width */
+    width: 30%; /* Make links take full width */
     text-align: center; /* Center text inside links */
   }
 
@@ -479,7 +484,6 @@ html {
     text-align: center;
   }
 }
-
 
 // @media (max-width: 768px) {
 //   .navbar {
