@@ -84,8 +84,8 @@ const EditProfile = () => {
       image: imgUrl,
     };
     console.log("Data to send", data);
-    console.log(user)
-    setUser(data);
+    console.log("this is the details of", user);
+    // setUser(data);
     try {
       console.log("running");
       const res = await axios.put(
