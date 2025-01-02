@@ -95,7 +95,7 @@ export const Single = () => {
             <div className="content">
               <div className="imgbox">
                 <img
-                  src={`/upload/${encodeURIComponent(post[0]?.postImg)}`}
+                  src={`${backendUrl}/upload/${encodeURIComponent(post[0]?.postImg)}`}
                   alt="Post Image"
                 />
               </div>

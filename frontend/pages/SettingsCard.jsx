@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faRunning, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Menu from "../pages/Menu";
 const Tabs = () => {
-  const { user, setuser, filteredPosts, setPosts, posts ,backendUrl} =
+  const { user, setuser, filteredPosts, setPosts, posts, backendUrl } =
     useContext(authContext);
   // console.log(user);
 
@@ -73,9 +73,7 @@ const Tabs = () => {
     // console.log(user.ID);
     const getPosts = async () => {
       try {
-        const res = await axios.get(
-          `${backendUrl}/user/userBlog/${user.ID}`
-        );
+        const res = await axios.get(`${backendUrl}/user/userBlog/${user.ID}`);
         const posts = res.data.filter((post) => post.status === "published");
         console.log(res.data);
         setuserposts(posts);
@@ -110,15 +108,12 @@ const Tabs = () => {
   // console.log(newDetails);
   const reload = async () => {
     try {
-      const res = await fetch(
-        `${backendUrl}/user/details/${user.ID}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await fetch(`${backendUrl}/user/details/${user.ID}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const updatedUser = await res.json();
 
       //  console.log(updatedUser);
@@ -146,16 +141,13 @@ const Tabs = () => {
     };
     console.log(formattedDetails);
     try {
-      const res = await fetch(
-        `${backendUrl}/user/updateDetails/${user.ID}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formattedDetails),
-        }
-      );
+      const res = await fetch(`${backendUrl}/user/updateDetails/${user.ID}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formattedDetails),
+      });
 
       //setEditing(false);
       // setEditing(false);
@@ -202,12 +194,9 @@ const Tabs = () => {
       // } else {
       //   console.log("Token not found");
       // }
-      const res = await axios.delete(
-        `${backendUrl}/cat/deletePost/${postid}`,
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await axios.delete(`${backendUrl}/cat/deletePost/${postid}`, {
+        withCredentials: true,
+      });
       if (res.status === 200) {
         console.log("Post deleted successfully");
         // alert(res.data); // Display success message
@@ -348,7 +337,10 @@ const Tabs = () => {
                         }`}
                         key={post.id}
                       >
-                        <img src={`/upload/${post.img}`} alt="post image" />
+                        <img
+                          src={`${backendUrl}/upload/${post.img}`}
+                          alt="post image"
+                        />
                         <div className="post-content">
                           <h2>{post.title}</h2>
                           <p>{post.desc}</p>
@@ -402,7 +394,10 @@ const Tabs = () => {
                           }`}
                           key={post.id}
                         >
-                          <img src={`/upload/${post.img}`} alt="post image" />
+                          <img
+                            src={`${backendUrl}/upload/${post.img}`}
+                            alt="post image"
+                          />
                           <div className="post-content">
                             <h2>{post.title}</h2>
                             <p>{post.desc}</p>

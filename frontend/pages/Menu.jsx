@@ -61,7 +61,7 @@ export default function Menu({ cat }) {
                       <div className="otherpost" key={post.id}>
                         <img
                           className="post-image"
-                          src={`/upload/${encodeURIComponent(post.img)}`}
+                          src={`${backendUrl}/upload/${encodeURIComponent(post.img)}`}
                           alt="Post Image"
                         />
                         <h2 className="post-title">{post.title}</h2>
