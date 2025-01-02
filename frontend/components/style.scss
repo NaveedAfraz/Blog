@@ -391,7 +391,6 @@ html {
     transform: translateY(0);
   }
 }
-
 .navbar {
   font-family: "Pacifico", cursive;
   display: flex;
@@ -399,8 +398,6 @@ html {
   align-items: center;
   height: 10vh;
   padding: 10px;
-  // // background-color: #2d3748; // Dark background for the navbar
-  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow for navbar
 }
 
 .navbar-logo {
@@ -413,12 +410,9 @@ html {
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 20px; // Add space between each link
-  border: none;
-  &:hover {
-    color: #003d80;
-  }
+  gap: 20px;
 }
+
 .navbar-link {
   margin: 2px;
   padding: 8px 12px;
@@ -429,22 +423,15 @@ html {
   transition: background-color 0.3s ease;
   border: none;
   outline: none;
-  &:hover {
-    background-color: #007bff;
-    color: whitesmoke; // Darker shade on hover
-  }
-
-  &.active {
-    background-color: #007bff; // Highlight the active link
-  }
 }
 
-.navbar-user {
-  @include navbtnsStyle;
+.navbar-link:hover {
+  background-color: #007bff;
+  color: whitesmoke;
 }
 
-.navbar-button {
-  @include navbtnsStyle;
+.navbar-link.active {
+  background-color: #007bff;
 }
 
 .navbar-write-link {
@@ -455,12 +442,44 @@ html {
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+}
 
-  &:hover {
-    background-color: #007bff;
-    color: whitesmoke; // Darker shade on hover
+.navbar-write-link:hover {
+  background-color: #007bff;
+  color: whitesmoke;
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+    height: auto; /* Allow height to adjust automatically */
+  }
+
+  .navbar-logo {
+    margin-left: 0; /* Align logo on the left */
+    margin-bottom: 10px; /* Add spacing between the logo and the links */
+  }
+
+  .navbar-links {
+    flex-direction: column; /* Stack links vertically */
+    align-items: center; /* Center the links */
+    gap: 10px; /* Adjust spacing between links */
+    width: 100%; /* Take full width */
+  }
+
+  .navbar-link {
+    width: 100%; /* Make links take full width */
+    text-align: center; /* Center text inside links */
+  }
+
+  .navbar-write-link {
+    width: 100%; /* Make the Write link take full width */
+    text-align: center;
   }
 }
+
 
 // @media (max-width: 768px) {
 //   .navbar {
