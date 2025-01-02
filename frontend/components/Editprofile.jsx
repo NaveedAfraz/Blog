@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
-  const { setUser, user ,backendUrl} = useContext(authContext);
+  const { setUser, user, backendUrl } = useContext(authContext);
   const [editUsername, seteditUsername] = useState(user?.USERNAME || "");
   const [editEmail, seteditEmail] = useState(user?.EMAIL || "");
 
@@ -52,15 +52,11 @@ const EditProfile = () => {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      const res = await axios.post(
-        `${backendUrl}/uploaduserimg`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const res = await axios.post(`${backendUrl}/uploaduserimg`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       console.log("File uploaded successfully:", res.data);
       return res.data;
@@ -88,7 +84,7 @@ const EditProfile = () => {
       image: imgUrl,
     };
     console.log("Data to send", data);
-
+    setUser(data);
     try {
       const res = await axios.put(
         `${backendUrl}/user/userBlog/${user.ID}`,
@@ -99,7 +95,7 @@ const EditProfile = () => {
           },
         }
       );
-      console.log(res);
+      console.log(res.data?.user);
       if (res.data.status === 200) {
         setUser(res.data?.user);
         // console.log(
@@ -111,8 +107,6 @@ const EditProfile = () => {
         // // Show the popup
         // console.log("Setting showPopup to true");
         // setShowPopup(true);
-
-       
       }
     } catch (error) {
       console.log("Error:", error);
