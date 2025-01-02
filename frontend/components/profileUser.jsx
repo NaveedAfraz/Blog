@@ -10,14 +10,14 @@ const UserProfile = () => {
   //const { user } = useContext(authContext);
   const { editshow, user } = useContext(authContext);
   // const handleEdit = () => {
-  //   seteditshow(true); 
+  //   seteditshow(true);
   // };
   // console.log(user.userimg);
   // console.log(user)
   // console.log(`/upload/${user.userimg}`);
   console.log(user);
   // const imageUrl = user?.userimg
-  //   ? `http://localhost:3006/uploaduserimg/${user.userimg}`
+  //   ? `http://${backendurl}:3006/uploaduserimg/${user.userimg}`
   //   : null;
 
   const unsplashImageUrl =

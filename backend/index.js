@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3006;
 
 // CORS Configuration
-// const allowedOrigins = ["https://your-frontend-domain.com", "http://localhost:3000"];
+// const allowedOrigins = ["https://your-frontend-domain.com", "http://${backendurl}:3000"];
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -32,8 +32,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use("/upload", express.static(path.join(__dirname, "../frontend/upload")));
-app.use("/uploaduserimg", express.static(path.join(__dirname, "../frontend/uploaduserimg")));
-
+app.use(
+  "/uploaduserimg",
+  express.static(path.join(__dirname, "../frontend/uploaduserimg"))
+);
 
 // Multer Configurations
 const storageOne = multer.diskStorage({
@@ -54,12 +56,17 @@ const storageTwo = multer.diskStorage({
 });
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ["image/jpeg", "image/png"];
-  allowedTypes.includes(file.mimetype) ? cb(null, true) : cb(new Error("Only JPEG/PNG files allowed"));
+  allowedTypes.includes(file.mimetype)
+    ? cb(null, true)
+    : cb(new Error("Only JPEG/PNG files allowed"));
 };
 const uploadOne = multer({ storage: storageOne, fileFilter });
 const uploadTwo = multer({ storage: storageTwo, fileFilter });
 console.log("Upload path:", path.join(__dirname, "../frontend/upload"));
-console.log("UploadUserImg path:", path.join(__dirname, "../frontend/uploaduserimg"));
+console.log(
+  "UploadUserImg path:",
+  path.join(__dirname, "../frontend/uploaduserimg")
+);
 
 // Routes
 app.post("/upload", uploadOne.single("file"), (req, res) => {
@@ -83,5 +90,5 @@ app.use((err, req, res, next) => {
 
 // Start Server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://${backendurl}:${PORT}`);
 });

@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { authContext } from "../context/authContext";
 
 export default function Menu({ cat }) {
-  const { filteredPosts } = useContext(authContext);
+  const { filteredPosts ,backendUrl} = useContext(authContext);
   const [posts, setPost] = useState([]);
   console.log(cat);
   console.log(filteredPosts);
@@ -17,7 +17,7 @@ export default function Menu({ cat }) {
   // const queryParams = new URLSearchParams(location.search);
   const fetch = async () => {
     try {
-      const res = await axios.get(`http://localhost:3006/cat/?cat=${cat}`);
+      const res = await axios.get(`${backendUrl}/cat/?cat=${cat}`);
       const publishedPosts = res.data.filter(
         (post) => post.status === "published"
       );

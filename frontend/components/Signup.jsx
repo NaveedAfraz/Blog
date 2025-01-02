@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./login.css";
 // import "font-awesome/css/font-awesome.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"; // Import axios for HTTP requests
+import { authContext } from "../context/authContext";
 
 function SignUp() {
   // State to hold form data
@@ -12,6 +13,7 @@ function SignUp() {
     password: "",
     confirmPassword: "",
   });
+  const {backendUrl} = useContext(authContext)
   const [success, setSucess] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,7 +21,7 @@ function SignUp() {
     console.log(formData);
   };
   const Navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,7 +40,7 @@ function SignUp() {
       // console.log("Sending data:", formData);
 
       const send = await axios.post(
-        "http://localhost:3006/auth/signup",
+        `${backendUrl}/auth/signup`,
         datatosend
       );
       console.log("Request successful:", send);

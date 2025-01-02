@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faRunning, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Menu from "../pages/Menu";
 const Tabs = () => {
-  const { user, setuser, filteredPosts, setPosts, posts } =
+  const { user, setuser, filteredPosts, setPosts, posts ,backendUrl} =
     useContext(authContext);
   // console.log(user);
 
@@ -17,7 +17,7 @@ const Tabs = () => {
     console.log("running");
     const fetchpostsAgain = async () => {
       try {
-        const res = await axios.get(`http://localhost:3006/cat/?cat=All`);
+        const res = await axios.get(`${backendUrl}/cat/?cat=All`);
         console.log(res);
         // if (JSON.stringify(res.data) !== JSON.stringify(posts)) {
         setFiltered(res.data); // Only update if the posts have changed
@@ -68,16 +68,16 @@ const Tabs = () => {
   // console.log(user);
   const navigate = useNavigate();
   const tabs = ["account", "posts", "comments", "drafts"];
- // const id = user.ID;
+  // const id = user.ID;
   useEffect(() => {
     // console.log(user.ID);
     const getPosts = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3006/user/userBlog/${user.ID}`
+          `${backendUrl}/user/userBlog/${user.ID}`
         );
         const posts = res.data.filter((post) => post.status === "published");
-        console.log(res.data)
+        console.log(res.data);
         setuserposts(posts);
       } catch (err) {
         console.error("Error fetching posts:", err);
@@ -87,7 +87,7 @@ const Tabs = () => {
   }, [user?.ID]);
   // console.log(userPosts);
   const handlechnagetabs = (tab) => {
-    console.log(newDetails)
+    console.log(newDetails);
     setActiveTab(tab);
     navigate(`?tab=${tab}`);
   }; //console.log(newd
@@ -105,18 +105,20 @@ const Tabs = () => {
     // setEditing(false);
     // console.log(newDetails);
   };
-console.log(user?.ID)
+  console.log(user?.ID);
   //console.log(isEditing);
   // console.log(newDetails);
   const reload = async () => {
-    
     try {
-      const res = await fetch(`http://localhost:3006/user/details/${user.ID}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `${backendUrl}/user/details/${user.ID}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const updatedUser = await res.json();
 
       //  console.log(updatedUser);
@@ -132,10 +134,10 @@ console.log(user?.ID)
       console.error("Error fetching updated details:", error);
     }
   };
-useEffect(()=>{
-  reload()
-  console.log(newDetails)
-},[])
+  useEffect(() => {
+    reload();
+    console.log(newDetails);
+  }, []);
   const handleSave = async () => {
     setEditing("noedit");
     const formattedDetails = {
@@ -145,7 +147,7 @@ useEffect(()=>{
     console.log(formattedDetails);
     try {
       const res = await fetch(
-        `http://localhost:3006/user/updateDetails/${user.ID}`,
+        `${backendUrl}/user/updateDetails/${user.ID}`,
         {
           method: "PUT",
           headers: {
@@ -168,16 +170,16 @@ useEffect(()=>{
         ...updatedUser.updatedUser,
         Dob: formattedDob,
       });
-      console.log("hlo")
+      console.log("hlo");
       await reload();
-      console.log(newDetails)
+      console.log(newDetails);
       setEditing("noedit");
     } catch (error) {
       console.log(error);
     }
     // setNewDetails(user);
   };
-console.log(newDetails)
+  console.log(newDetails);
   // useEffect(() => {
   //   //   console.log("running");
   //   if (isEditing === "noedit") {
@@ -201,7 +203,7 @@ console.log(newDetails)
       //   console.log("Token not found");
       // }
       const res = await axios.delete(
-        `http://localhost:3006/cat/deletePost/${postid}`,
+        `${backendUrl}/cat/deletePost/${postid}`,
         {
           withCredentials: true,
         }
@@ -315,7 +317,9 @@ console.log(newDetails)
               />
             </div>
             {isEditing == "noedit" && (
-              <button className="editdetails" onClick={handleEdit}>Edit Details</button>
+              <button className="editdetails" onClick={handleEdit}>
+                Edit Details
+              </button>
             )}
             {isEditing == "edit" && (
               <button

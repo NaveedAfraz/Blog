@@ -17,7 +17,7 @@ const Write = () => {
   const [showModal, setshowModal] = useState(false);
   const state = useLocation().state || [];
   console.log(state);
-  const { user } = useContext(authContext);
+  const { user ,backendUrl} = useContext(authContext);
   console.log(user);
   const [showtext, setShowtext] = useState(false);
   console.log();
@@ -29,6 +29,7 @@ const Write = () => {
   const paramID = searchParams.get("edit");
   console.log(searchParams.get("edit"));
   console.log(paramID);
+  
   const [postDetails, setPostDetails] = useState({
     title: state[0]?.title || "",
     desc: state[0]?.desc || "",
@@ -74,11 +75,15 @@ const Write = () => {
       formData.append("file", selectedFile); // Use the actual File object
       console.log("Uploading file:", selectedFile.name);
 
-      const res = await axios.post("http://localhost:3006/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await axios.post(
+        `${backendUrl}/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log(formData);
       return res.data;
     } catch (err) {
@@ -145,14 +150,14 @@ const Write = () => {
 
       state.length != 0
         ? await axios.put(
-            `http://localhost:3006/cat/${state[0].id}`,
+            `${backendUrl}/cat/${state[0].id}`,
             {
               postDetails: updatedPostDetails,
             },
             { withCredentials: true }
           )
         : await axios.post(
-            `http://localhost:3006/cat/addPost/`,
+            `${backendUrl}/cat/addPost/`,
             {
               postDetails: updatedPostDetails,
             },
@@ -216,7 +221,7 @@ const Write = () => {
         console.log("Final postDetails object:", updatedPostDetails);
 
         const res = await axios.put(
-          `http://localhost:3006/cat/${state[0].id}`,
+          `${backendUrl}/cat/${state[0].id}`,
           {
             postDetails: updatedPostDetails,
           },
@@ -239,7 +244,7 @@ const Write = () => {
       }, 3000);
     } else {
       await axios.post(
-        `http://localhost:3006/cat/addPost/`,
+        `${backendUrl}/cat/addPost/`,
         {
           postDetails: updatedPostDetails,
         },
@@ -322,7 +327,7 @@ const Write = () => {
               onChange={(e) => {
                 setShowtext(false);
                 const file = e.target.files[0];
-                console.log(file)
+                console.log(file);
                 setPostDetails((prev) => ({
                   ...prev,
                   file: {

@@ -115,6 +115,7 @@ export const AuthContextProvider = ({ children }) => {
           error,
           seterror,
           editshow,
+          backendUrl,
           seteditshow,
         }}
       >

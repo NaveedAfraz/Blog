@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
+import { authContext } from "../context/authContext";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ function ForgotPassword() {
   const handleChange = (e) => {
     setEmail(e.target.value);
   };
+  const { backendUrl } = useContext(authContext);
   const handleKeyPress = (e) => {
     if (e.key === "Backspace") {
       console.log("Backspace key pressed");
@@ -22,12 +24,9 @@ function ForgotPassword() {
   const handleReset = async () => {
     setdbEmail("");
     try {
-      const res = await axios.post(
-        "http://localhost:3006/auth/forgotPassword",
-        {
-          email,
-        }
-      );
+      const res = await axios.post(`${backendUrl}/auth/forgotPassword`, {
+        email,
+      });
       // console.log(res.data.token);
       // conso
       setToken(res.data.token);
@@ -45,11 +44,14 @@ function ForgotPassword() {
 
   const handleResetPass = async () => {
     try {
-      const res = await axios.post("http://localhost:3006/auth/ResetPassword", {
-        Token,
-        dbEmail,
-      });
-      console.log(res)
+      const res = await axios.post(
+        `${backendUrl}/auth/ResetPassword`,
+        {
+          Token,
+          dbEmail,
+        }
+      );
+      console.log(res);
     } catch (error) {
       console.log(error);
     }

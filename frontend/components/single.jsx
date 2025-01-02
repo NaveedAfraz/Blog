@@ -12,7 +12,7 @@ import Menu from "../pages/Menu";
 export const Single = () => {
   const [post, setPost] = useState([]);
   // const [format, setformat] = useState();
-  const { user } = useContext(authContext);
+  const { user ,backendUrl} = useContext(authContext);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const url = useParams();
@@ -22,9 +22,12 @@ export const Single = () => {
 
   const fetch = async () => {
     try {
-      const res = await axios.get(`http://localhost:3006/cat/getPost${ID}`, {
-        params: { ID },
-      });
+      const res = await axios.get(
+        `${backendUrl}/cat/getPost${ID}`,
+        {
+          params: { ID },
+        }
+      );
       setPost(res.data);
     } catch (error) {
       console.log(error);
@@ -40,8 +43,8 @@ export const Single = () => {
   const navigate = useNavigate();
   // useEffect(() => {
   const handleDelete = async () => {
-    console.log("rur")
-    setShowPopup(false)
+    console.log("rur");
+    setShowPopup(false);
     try {
       // const token = Cookies.get("access_token");
       // // or from cookies
@@ -52,7 +55,7 @@ export const Single = () => {
       //   console.log("Token not found");
       // }
       const res = await axios.delete(
-        `http://localhost:3006/cat/deletePost/${ID}`,
+        `${backendUrl}/cat/deletePost/${ID}`,
         {
           withCredentials: true,
         }
@@ -82,7 +85,9 @@ export const Single = () => {
             <div className="overlaypop">
               <div className="popup">
                 <p>{popupMessage}</p>
-                <button className="" onClick={handleDelete}>delete</button>
+                <button className="" onClick={handleDelete}>
+                  delete
+                </button>
               </div>
             </div>
           )}

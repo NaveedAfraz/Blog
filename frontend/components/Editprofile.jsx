@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
-  const { setUser, user } = useContext(authContext);
+  const { setUser, user ,backendUrl} = useContext(authContext);
   const [editUsername, seteditUsername] = useState(user?.USERNAME || "");
   const [editEmail, seteditEmail] = useState(user?.EMAIL || "");
 
@@ -53,7 +53,7 @@ const EditProfile = () => {
       formData.append("file", selectedFile);
 
       const res = await axios.post(
-        "http://localhost:3006/uploaduserimg",
+        `${backendUrl}/uploaduserimg`,
         formData,
         {
           headers: {
@@ -91,7 +91,7 @@ const EditProfile = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:3006/user/userBlog/${user.ID}`,
+        `${backendUrl}/user/userBlog/${user.ID}`,
         data,
         {
           headers: {
