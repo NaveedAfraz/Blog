@@ -4,51 +4,57 @@ import logo from "../components/img/logo.png"; // Update this path to where your
 import { authContext } from "../context/authContext";
 // import { faL } from "@fortawesome/free-solid-svg-icons";
 
-const Navbar = () => {
-  const { user, logout, login, seteditshow } = useContext(authContext);
+const Navbar = ({ children }) => {
+  const { user, logout, seteditshow } = useContext(authContext);
   const [dropdownActive, setDropdownActive] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownActive((prev) => !prev);
   };
+
   return (
-    <nav className="navbar">
-      <img src={logo} alt="Logo" className="navbar-logo" />
-      <button className="dropdown-toggle" onClick={toggleDropdown}>
-        ☰
-      </button>
-      <div
-        className={`navbar-links ${dropdownActive ? "dropdown-links-active" : ""}`}
-      >
-        <Link to="/home" className="navbar-link">
-          Home
-        </Link>
-        <Link to="/blog?cat=All" className="navbar-link">
-          blogs
-        </Link>
-        {user && (
-          <Link
-            onClick={() => seteditshow(false)}
-            to="/profile/?tab=account"
-            className="navbar-user"
-          >
-            {user?.USERNAME}
+    <>
+      <nav className="navbar">
+        <img src={logo} alt="Logo" className="navbar-logo" />
+        <button className="dropdown-toggle" onClick={toggleDropdown}>
+          ☰
+        </button>
+        <div
+          className={`navbar-links ${dropdownActive ? "dropdown-links-active" : ""}`}
+        >
+          <Link to="/home" className="navbar-link">
+            Home
           </Link>
-        )}
-        {user?.USERNAME ? (
-          <button onClick={logout} className="navbar-button">
-            LogOut
-          </button>
-        ) : (
-          <Link to="/login" className="navbar-link">
-            Login
+          <Link to="/blog?cat=All" className="navbar-link">
+            blogs
           </Link>
-        )}
-        <Link to="/write" className="navbar-write-link">
-          Write
-        </Link>
+          {user && (
+            <Link
+              onClick={() => seteditshow(false)}
+              to="/profile/?tab=account"
+              className="navbar-user"
+            >
+              {user?.USERNAME}
+            </Link>
+          )}
+          {user?.USERNAME ? (
+            <button onClick={logout} className="navbar-button">
+              LogOut
+            </button>
+          ) : (
+            <Link to="/login" className="navbar-link">
+              Login
+            </Link>
+          )}
+          <Link to="/write" className="navbar-write-link">
+            Write
+          </Link>
+        </div>
+      </nav>
+      <div className={`content ${dropdownActive ? "dropdown-active" : ""}`}>
+        {children}
       </div>
-    </nav>
+    </>
   );
 };
 

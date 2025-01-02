@@ -398,14 +398,34 @@ html {
   align-items: center;
   height: 10vh;
   padding: 10px;
-.dropdown-toggle {
-    display: none;
+  position: relative; // Ensure proper positioning of dropdown
+
+  .dropdown-toggle {
+    display: none; // Hidden for larger screens
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 24px;
+    right: 10px;
+    z-index: 2;
+
+    @media (max-width: 768px) {
+      display: block; // Visible for smaller screens
+    }
   }
+
   .navbar-logo {
     width: 50px;
     height: 70px;
     margin-left: 40px;
     object-fit: cover;
+
+    @media (max-width: 768px) {
+      margin-left: 0; // Align logo on the left
+      margin-bottom: 10px; // Add spacing between the logo and the links
+    }
   }
 
   .navbar-links {
@@ -424,8 +444,12 @@ html {
       left: 0;
       background-color: #ffffff; // Dropdown background
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); // Dropdown shadow
-      z-index: 100;
+      z-index: 1;
     }
+  }
+
+  .dropdown-links-active {
+    display: flex !important; // Show links when dropdown is active
   }
 
   .navbar-link,
@@ -458,32 +482,6 @@ html {
       width: 26%;
     }
   }
-
-  .dropdown-toggle {
-    display: none; // Hidden for larger screens
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    right: 10px;
-    // display: block;
-    top: 24px;
-    margin-left: auto;
-    /* margin-bottom: 100px; */
-    position: absolute;
- 
-    z-index: 2;
-    margin-right: 10px;
-    @media (max-width: 768px) {
-      display: block; // Visible for smaller screens
-      margin-left: auto;
-      margin-right: 10px;
-    }
-  }
-
-  .dropdown-links-active {
-    display: flex !important; // Show links when dropdown is active
-  }
 }
 
 /* Media Query for Small Screens */
@@ -492,15 +490,10 @@ html {
     flex-direction: column; // Stack items vertically
     align-items: flex-start; // Align items to the left
     height: auto; // Allow height to adjust automatically
-    border: none;
-    outline: none;
   }
+
   .dropdown-toggle {
     display: block; // Show the dropdown toggle
-  }
-  .navbar-logo {
-    margin-left: 0; // Align logo on the left
-    margin-bottom: 10px; // Add spacing between the logo and the links
   }
 
   .navbar-links {
@@ -518,6 +511,7 @@ html {
     text-align: center; // Center text inside links
   }
 }
+
 
 
 // @media (max-width: 768px) {
