@@ -474,7 +474,8 @@ html {
     width: 100%; /* Take full width */
   }
 
-  .navbar-link {
+ .navbar-button .navbar-link {
+  @include navbtnsStyle;
     width: 26%; /* Make links take full width */
     text-align: center; /* Center text inside links */
   }
