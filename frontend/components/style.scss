@@ -314,6 +314,18 @@ html {
     font-weight: bold; // Makes text bold for better visibility
     font-size: 1rem; // Adjusts font size for readability
     text-align: center; // Ensures text is centrally aligned
+
+    .navbar-link {
+      text-decoration: none; // Removes underline from links
+      color: white; // Sets the text color to white
+      padding: 0.5rem 1rem; // Adds padding around the text
+      border-radius: 8px; // Adds rounded corners to the links
+      transition: background-color 0.3s; // Smooth transition for hover effects
+
+      &:hover {
+        background-color: #0056b3; // Darker shade on hover
+      }
+    }
   }
 }
 

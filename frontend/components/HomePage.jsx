@@ -36,32 +36,32 @@ export const HomePage = () => {
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const backendUrl = "https://blog-3-mfgj.onrender.com"; // Correct backend URL
-    fetch(`${backendUrl}/`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Fetched data:", data); // Log the fetched data
-        setData([data]); // Set the data to state
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
-  console.log(data);
+  // useEffect(() => {
+  //   const backendUrl = "https://blog-3-mfgj.onrender.com"; // Correct backend URL
+  //   fetch(`${backendUrl}/`)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       console.log("Fetched data:", data); // Log the fetched data
+  //       setData([data]); // Set the data to state
+  //     })
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // }, []);
+  // console.log(data);
   return (
     <>
       <div className="app-wrapper">
         <div className="videoContainer">
           <div className="H-content">
-            {data.map((item, index) => (
+            {/* {data.map((item, index) => (
               <div key={index}>bbb{item.message}</div>
-            ))}
+            ))} */}
             <h1>Blog with the best.</h1>
             <h3>
               Join a community of visionary writers and thinkers. Explore
