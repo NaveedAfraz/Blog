@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3006;
 app.use(express.static(path.join(__dirname, "/")));
 // Catch-all route to handle React Router routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "/index.html"));
 });
 // CORS Configuration
 // const allowedOrigins = ["https://your-frontend-domain.com", "http://${backendurl}:3000"];
