@@ -305,8 +305,8 @@ html {
     display: flex; // Flexbox layout for alignment
     justify-content: center; // Centers content horizontally
     align-items: center; // Centers content vertically (optional if content needs alignment)
-    width: 40vw; // Sets the width to 40% of the viewport width
-
+    width: 90vw; // Sets the width to 40% of the viewport width
+    margin: 0 auto; // Centers the element horizontally and adds space at the top
     margin: 2rem auto; // Centers the element horizontally and adds space at the top
     border-radius: 8px; // Adds rounded corners (optional)
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Adds a subtle shadow for depth
@@ -316,6 +316,7 @@ html {
     text-align: center; // Ensures text is centrally aligned
 
     .navbar-link {
+      @include pacifico-font;
       text-decoration: none; // Removes underline from links
       color: white; // Sets the text color to white
       padding: 0.5rem 1rem; // Adds padding around the text
@@ -323,7 +324,7 @@ html {
       transition: background-color 0.3s; // Smooth transition for hover effects
 
       &:hover {
-        background-color: #0056b3; // Darker shade on hover
+        background-color: #007bff; // Darker shade on hover
       }
     }
   }
