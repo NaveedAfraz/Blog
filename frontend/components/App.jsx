@@ -26,18 +26,25 @@ function App() {
   const Layout = () => {
     return (
       <>
-      {/* // <div className="app-wrapper"> */}
+        {/* // <div className="app-wrapper"> */}
         <Navbar />{" "}
         <div className="main-content">
           <Outlet />
         </div>{" "}
-        <Foot/> </>
+        <Foot />{" "}
+      </>
       // </div>
     );
   };
   const { editshow, seteditshow } = useContext(authContext);
   // console.log(editshow);
-
+  const NotFound = () => {
+    return (
+      <div>
+        <h1>404 Not Found</h1>
+      </div>
+    );
+  };
   return (
     <Router>
       <Routes>
@@ -53,6 +60,7 @@ function App() {
             path="/profile"
             element={editshow ? <EditProfile /> : <UserProfile />}
           />
+          <Route path="*" element={<NotFound />} />
           <Route path="/write" element={<Write />}></Route>
         </Route>
       </Routes>
