@@ -19,8 +19,6 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 // const allowedOrigins = [
 //   "https://blog-62e7su5en-naveed-afrazs-projects.vercel.app",
 // ];
-const cors = require('cors');
-
 app.use(
   cors({
     origin: '*', // Allow all origins
