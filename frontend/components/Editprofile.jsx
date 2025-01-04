@@ -93,7 +93,7 @@ const EditProfile = () => {
         }
       );
 
-      if (res.status === 200) {
+      if (res) {
         setUser(res.data?.user);
         setPopupMessage("The details were updated, redirecting to HomePage...");
         setShowPopup(true); // Show the popup
