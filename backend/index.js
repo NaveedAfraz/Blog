@@ -16,23 +16,25 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 
 // Catch-all route for React Router
 
-const allowedOrigins = [
-  "https://blog-62e7su5en-naveed-afrazs-projects.vercel.app",
-];
+// const allowedOrigins = [
+//   "https://blog-62e7su5en-naveed-afrazs-projects.vercel.app",
+// ];
+const cors = require('cors');
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests from allowed origins or Postman (no origin)
-      const regex = /^https:\/\/.*\.your-frontend-domain\.com$/;
-      if (!origin || allowedOrigins.includes(origin) || regex.test(origin)) {
+      const allowedPattern = /^https:\/\/blog-.*\.vercel\.app$/; // Match dynamic Vercel subdomains
+      if (!origin || allowedPattern.test(origin)) {
         return callback(null, true);
       }
-      return callback(new Error("Not allowed by CORS"));
+      return callback(new Error('Not allowed by CORS'));
     },
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Allow cookies and credentials
+    credentials: true,
   })
 );
+
 const backendUrl = "https://blog-3-mfgj.onrender.com";
 // Middleware
 app.get("*", (req, res) => {
