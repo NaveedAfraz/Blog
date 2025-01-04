@@ -124,6 +124,7 @@ const EditProfile = () => {
       if (showPopup) {
         setTimeout(() => {
           navigate("/home");
+          setShowPopup(false);
         }, 3000);
       }
     }
