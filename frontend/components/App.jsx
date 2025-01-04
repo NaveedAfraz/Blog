@@ -65,6 +65,7 @@ function App() {
                 <EditProfile
                   showpopup={EditPopup}
                   setshowpopup={setEditPopup}
+                  popupMessage={popupMessage}
                 />
               ) : (
                 <UserProfile />
