@@ -20,7 +20,7 @@ const EditProfile = () => {
 
   const handleUsernameChange = (e) => seteditUsername(e.target.value);
   const handleEmailChange = (e) => seteditEmail(e.target.value);
-  
+  console.log(postDetails);
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -36,6 +36,7 @@ const EditProfile = () => {
   };
 
   const upload = async (e) => {
+    // e.preventDefault();
     try {
       if (postDetails.file?.isUploaded) {
         console.log("Using existing image:", postDetails.file.name);
@@ -65,6 +66,7 @@ const EditProfile = () => {
   };
 
   const handleSave = async (e) => {
+    // e.preventDefault();
     let imgUrl;
 
     if (postDetails.file?.isUploaded) {
@@ -81,8 +83,14 @@ const EditProfile = () => {
       email: editEmail,
       image: imgUrl,
     };
-    
+
+    console.log("Data to send", data);
+    console.log("this is the details of", user);
+    // setUser(data);
     try {
+      console.log("running");
+      setShowPopup(true);
+      setPopupMessage("The details were updated, redirecting to HomePage...");
       const res = await axios.put(
         `${backendUrl}/user/userBlog/${user.ID}`,
         data,
@@ -92,26 +100,38 @@ const EditProfile = () => {
           },
         }
       );
-
-      if (res) {
+      console.log("running2");
+      console.log(res);
+      console.log("this is the data i got from backend ", res.data?.user);
+      if (res.status === 200) {
+        console.log("Setting user changed", res.data?.user);
         setUser(res.data?.user);
-        setPopupMessage("The details were updated, redirecting to HomePage...");
-        setShowPopup(true); // Show the popup
+        // console.log(
+        //   "Setting popup message:",
+        //   "The details were updated, redirecting to HomePage..."
+        // );
+        // setPopupMessage("The details were updated, redirecting to HomePage...");
+
+        // // Show the popup
+        // console.log("Setting showPopup to true");
+        // setShowPopup(true);
       }
     } catch (error) {
       console.log("Error:", error);
     }
   };
-
+  console.log(showPopup);
   useEffect(() => {
     if (showPopup) {
-      // Wait for the popup to be visible for a certain period before navigating
-      setTimeout(() => {
-        navigate("/home");  // Redirect to Home
-        setShowPopup(false); // Hide the popup after navigation
-      }, 3000); // 3 seconds delay before redirect
+      console.log("Popup is visible:", popupMessage);
+      if (showPopup) {
+        setTimeout(() => {
+          navigate("/home");
+          setShowPopup(false);
+        }, 3000);
+      }
     }
-  }, [showPopup, navigate]);
+  }, [showPopup]);
 
   return (
     <>
@@ -160,9 +180,9 @@ const EditProfile = () => {
             <div className="edit-profile-actions">
               <button
                 onClick={() => {
-                  handleSave();  // Save changes
+                  handleSave(); // Call the handleSave function
                 }}
-                type="button"
+                type="button" // Change type to 'button' to prevent form submission
                 className="save-button"
               >
                 Save Changes
