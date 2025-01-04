@@ -7,15 +7,15 @@ const path = require("path");
 const auth = require("./routes/auth");
 const post = require("./routes/post");
 const users = require("./routes/user");
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 const app = express();
 const PORT = process.env.PORT || 3006;
 app.use(express.static(path.join(__dirname, "../frontend")));
 
 // Catch-all route for React Router
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/index.html"));
-});
+
 const allowedOrigins = [
   "https://blog-62e7su5en-naveed-afrazs-projects.vercel.app",
 ];
@@ -35,9 +35,9 @@ app.use(
 );
 const backendUrl = "https://blog-3-mfgj.onrender.com";
 // Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
+});
 app.use("/upload", express.static(path.join(__dirname, "../frontend/upload")));
 app.use(
   "/uploaduserimg",
