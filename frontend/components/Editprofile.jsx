@@ -3,7 +3,12 @@ import { authContext } from "../context/authContext";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const EditProfile = () => {
+const EditProfile = ({
+  showpopup,
+  setshowpopup,
+  popupMessage,
+  setPopupMessage,
+}) => {
   const { setUser, user, backendUrl, seteditshow } = useContext(authContext);
   const [editUsername, seteditUsername] = useState(user?.USERNAME || "");
   const [editEmail, seteditEmail] = useState(user?.EMAIL || "");
@@ -14,8 +19,6 @@ const EditProfile = () => {
       : { name: "", isUploaded: false, fileObject: null },
   });
 
-  const [showpopup, setshowpopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState("");
   const navigate = useNavigate();
 
   const handleUsernameChange = (e) => seteditUsername(e.target.value);
@@ -106,15 +109,14 @@ const EditProfile = () => {
       if (res.status === 200) {
         console.log("Setting user changed", res.data?.user);
         setUser(res.data?.user);
-        // console.log(
-        //   "Setting popup message:",
-        //   "The details were updated, redirecting to HomePage..."
-        // );
+        console.log(
+          "Setting popup message:",
+          "The details were updated, redirecting to HomePage..."
+        );
         // setPopupMessage("The details were updated, redirecting to HomePage...");
 
         // // Show the popup
         // console.log("Setting showPopup to true");
-        // setShowPopup(true);
       }
     } catch (error) {
       console.log("Error:", error);
@@ -127,8 +129,9 @@ const EditProfile = () => {
       if (showpopup) {
         setTimeout(() => {
           navigate("/home");
-          // setshowpopup(false);
-        }, 3000);
+          setshowpopup(false);
+          setPopupMessage("");
+        }, 4000);
       }
     }
   }, [showpopup]);

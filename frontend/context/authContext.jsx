@@ -11,6 +11,7 @@ export const AuthContextProvider = ({ children }) => {
   //const backendUrl = "https://blog-3-mfgj.onrender.com";
   const [backendUrl, setBackendUrl] = useState(
     "https://blog-3-mfgj.onrender.com"
+    // "http://localhost:5000"
   );
   const [user, setUser] = useState();
   const [posts, setPosts] = useState([]);
