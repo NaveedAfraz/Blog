@@ -45,6 +45,8 @@ function App() {
       </div>
     );
   };
+  const [showpopup, setshowpopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
   return (
     <Router>
       <Routes>
@@ -58,7 +60,18 @@ function App() {
           <Route path="/blog/:cat/post/:id" element={<Single />} />
           <Route
             path="/profile"
-            element={editshow ? <EditProfile /> : <UserProfile />}
+            element={
+              editshow ? (
+                <EditProfile
+                  showpopup={showpopup}
+                  setPopupMessage={setPopupMessage}
+                  setshowpopup={setshowpopup}
+                  popupMessage={popupMessage}
+                />
+              ) : (
+                <UserProfile />
+              )
+            }
           />
           <Route path="*" element={<NotFound />} />
           <Route path="/write" element={<Write />}></Route>
