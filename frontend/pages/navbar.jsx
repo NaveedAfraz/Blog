@@ -54,7 +54,7 @@ const Navbar = ({ children }) => {
             <button
               onClick={() => {
                 setDropdownActive((prev) => !prev);
-                logout;
+                logout();
               }}
               className="navbar-button"
             >
