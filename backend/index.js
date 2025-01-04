@@ -21,19 +21,19 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 //   "http://localhost:5173", // Local frontend URL
 // ];
 
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       // Allow requests with no origin (like Postman or mobile apps)
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         return callback(null, true);
-//       }
-//       return callback(new Error("Not allowed by CORS"));
-//     },
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true, // Enable cookies and authentication headers
-//   })
-// );
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like Postman or mobile apps)
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Enable cookies and authentication headers
+  })
+);
 
 
 const backendUrl = "https://blog-3-mfgj.onrender.com";
