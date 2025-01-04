@@ -20,7 +20,10 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 // const allowedOrigins = [
 //   "http://localhost:5173", // Local frontend URL
 // ];
-
+const allowedOrigins = [
+  "http://localhost:5173", // Local development
+  "https://blog-theta-three-48.vercel.app", // Vercel deployment
+];
 app.use(
   cors({
     origin: (origin, callback) => {
