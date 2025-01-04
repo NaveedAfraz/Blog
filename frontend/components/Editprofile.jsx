@@ -120,18 +120,18 @@ const EditProfile = () => {
       console.log("Error:", error);
     }
   };
-  console.log(showPopup);
+  console.log(showpopup);
   useEffect(() => {
-    if (showPopup) {
+    if (showpopup) {
       console.log("Popup is visible:", popupMessage);
-      if (showPopup) {
+      if (showpopup) {
         setTimeout(() => {
           navigate("/home");
-          setShowPopup(false);
+          setshowpopup(false);
         }, 3000);
       }
     }
-  }, [showPopup]);
+  }, [showpopup]);
 
   return (
     <>
