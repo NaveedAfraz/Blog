@@ -14,7 +14,7 @@ const EditProfile = () => {
       : { name: "", isUploaded: false, fileObject: null },
   });
 
-  const [showPopup, setShowPopup] = useState(false);
+  const [showpopup, setshowpopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const navigate = useNavigate();
 
@@ -89,7 +89,7 @@ const EditProfile = () => {
     // setUser(data);
     try {
       console.log("running");
-      setShowPopup(true);
+      setshowpopup(true);
       setPopupMessage("The details were updated, redirecting to HomePage...");
       const res = await axios.put(
         `${backendUrl}/user/userBlog/${user.ID}`,
@@ -135,7 +135,7 @@ const EditProfile = () => {
 
   return (
     <>
-      {showPopup && (
+      {showpopup && (
         <div className="overlaypop">
           <div className="popup">
             <p>{popupMessage}</p>
@@ -179,9 +179,7 @@ const EditProfile = () => {
             </div>
             <div className="edit-profile-actions">
               <button
-                onClick={() => {
-                  handleSave(); // Call the handleSave function
-                }}
+                onClick={handleSave}
                 type="button" // Change type to 'button' to prevent form submission
                 className="save-button"
               >
