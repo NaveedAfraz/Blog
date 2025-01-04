@@ -20,7 +20,7 @@ const EditProfile = () => {
 
   const handleUsernameChange = (e) => seteditUsername(e.target.value);
   const handleEmailChange = (e) => seteditEmail(e.target.value);
-  console.log(postDetails);
+  console.log("hlooo",postDetails);
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
