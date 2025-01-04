@@ -7,10 +7,11 @@ const path = require("path");
 const auth = require("./routes/auth");
 const post = require("./routes/post");
 const users = require("./routes/user");
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-const app = express();
+
 const PORT = process.env.PORT || 3006;
 app.use(express.static(path.join(__dirname, "../frontend")));
 
