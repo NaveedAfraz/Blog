@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
-  const { setUser, user, backendUrl, seteditshow ,showpopup, setshowpopup,setPopupMessage} = useContext(authContext);
+  const { setUser, user, backendUrl, seteditshow } = useContext(authContext);
   const [editUsername, seteditUsername] = useState(user?.USERNAME || "");
   const [editEmail, seteditEmail] = useState(user?.EMAIL || "");
 
@@ -14,8 +14,8 @@ const EditProfile = () => {
       : { name: "", isUploaded: false, fileObject: null },
   });
 
-  // const [showpopup, setshowpopup] = useState(false);
-  // const [popupMessage, setPopupMessage] = useState("");
+  const [showpopup, setshowpopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
   const navigate = useNavigate();
 
   const handleUsernameChange = (e) => seteditUsername(e.target.value);
