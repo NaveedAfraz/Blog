@@ -10,25 +10,27 @@ const users = require("./routes/user");
 
 const app = express();
 const PORT = process.env.PORT || 3006;
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 // Catch-all route for React Router
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
-// CORS Configuration
-// const allowedOrigins = ["https://your-frontend-domain.com", "http://${backendurl}:3000"];
+const allowedOrigins = [
+  "https://blog-62e7su5en-naveed-afrazs-projects.vercel.app",
+];
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like Postman or mobile apps)
-      if (!origin) return callback(null, true);
-
-      // Dynamically allow any origin
-      callback(null, true);
+      // Allow requests from allowed origins or Postman (no origin)
+      const regex = /^https:\/\/.*\.your-frontend-domain\.com$/;
+      if (!origin || allowedOrigins.includes(origin) || regex.test(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
     },
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Allow credentials
+    credentials: true, // Allow cookies and credentials
   })
 );
 const backendUrl = "https://blog-3-mfgj.onrender.com";
