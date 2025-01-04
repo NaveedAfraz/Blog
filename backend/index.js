@@ -11,28 +11,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-const PORT = process.env.PORT || 3006;
+ const PORT = process.env.PORT || 3006;
 app.use(express.static(path.join(__dirname, "../frontend")));
 
 // Catch-all route for React Router
 
-// const allowedOrigins = [
-//   "https://blog-62e7su5en-naveed-afrazs-projects.vercel.app",
-// ];
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      const allowedPattern = /^https:\/\/blog-.*\.vercel\.app$/; // Matches dynamic Vercel subdomains
-      if (!origin || allowedPattern.test(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error('Not allowed by CORS'));
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Enable cookies and authentication headers
-  })
-);
+
 // const allowedOrigins = [
 //   "http://localhost:5173", // Local frontend URL
 // ];
