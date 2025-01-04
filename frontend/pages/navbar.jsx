@@ -20,17 +20,30 @@ const Navbar = ({ children }) => {
           ☰
         </button>
         <div
-          className={`navbar-links ${dropdownActive ? "dropdown-links-active" : ""}`}
+          className={`navbar-links ${
+            dropdownActive ? "dropdown-links-active" : ""
+          }`}
         >
-          <Link to="/home" className="navbar-link">
+          <Link
+            to="/home"
+            className="navbar-link"
+            onClick={() => setDropdownActive((prev) => !prev)}
+          >
             Home
           </Link>
-          <Link to="/blog?cat=All" className="navbar-link">
+          <Link
+            to="/blog?cat=All"
+            className="navbar-link"
+            onClick={() => setDropdownActive((prev) => !prev)}
+          >
             blogs
           </Link>
           {user && (
             <Link
-              onClick={() => seteditshow(false)}
+              onClick={() => {
+                seteditshow(false);
+                setDropdownActive((prev) => !prev);
+              }}
               to="/profile/?tab=account"
               className="navbar-user"
             >
@@ -38,15 +51,29 @@ const Navbar = ({ children }) => {
             </Link>
           )}
           {user?.USERNAME ? (
-            <button onClick={logout} className="navbar-button">
+            <button
+              onClick={() => {
+                setDropdownActive((prev) => !prev);
+                logout;
+              }}
+              className="navbar-button"
+            >
               LogOut
             </button>
           ) : (
-            <Link to="/login" className="navbar-link">
+            <Link
+              to="/login"
+              className="navbar-link"
+              onClick={() => setDropdownActive((prev) => !prev)}
+            >
               Login
             </Link>
           )}
-          <Link to="/write" className="navbar-write-link">
+          <Link
+            to="/write"
+            className="navbar-write-link"
+            onClick={() => setDropdownActive((prev) => !prev)}
+          >
             Write
           </Link>
         </div>
