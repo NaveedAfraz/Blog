@@ -20,7 +20,7 @@ const Tabs = () => {
         const res = await axios.get(`${backendUrl}/cat/?cat=All`);
         console.log(res);
         // if (JSON.stringify(res.data) !== JSON.stringify(posts)) {
-        setFiltered(res.data); // Only update if the posts have changed
+        setFiltered(res?.data); // Only update if the posts have changed
         // }
         console.log(filtered);
         console.log("running2");
@@ -74,7 +74,7 @@ const Tabs = () => {
     const getPosts = async () => {
       try {
         const res = await axios.get(`${backendUrl}/user/userBlog/${user.ID}`);
-        const posts = res.data.filter((post) => post.status === "published");
+        const posts = res?.data?.filter((post) => post.status === "published");
         console.log(res.data);
         setuserposts(posts);
       } catch (err) {
@@ -216,17 +216,19 @@ const Tabs = () => {
       console.error(err);
     }
   };
-  console.log(filtered);
+  //console.log(filtered);
   const [filteredPostsagain, setfilteredPostsagain] = useState([]);
   useEffect(() => {
     console.log("faRunning");
-    const filteredPostsagain = filtered.filter(
-      (post) => post.status == "draft"
-    );
-    console.log(filteredPostsagain);
-    setfilteredPostsagain(filteredPostsagain);
+    if (filtered.length >= 0) {
+      const filteredPostsagain = filtered.filter(
+        (post) => post.status == "draft"
+      );
+      console.log(filteredPostsagain);
+      setfilteredPostsagain(filteredPostsagain);
+    }
   }, [filtered]);
-  console.log(filteredPostsagain);
+  // console.log(filteredPostsagain);
   return (
     <div className="tabs">
       {/* Tab Headers */}

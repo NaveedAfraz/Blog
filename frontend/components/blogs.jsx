@@ -5,8 +5,8 @@ import { authContext } from "../context/authContext";
 // import "./home.css";
 const Blogs = () => {
   // const [posts, setPosts] = useState([]);
-  const { posts, setPosts, filteredPosts } = useContext(authContext);
-  const backendUrl = "https://blog-3-mfgj.onrender.com";
+  const { posts, setPosts, filteredPosts, backendUrl } =
+    useContext(authContext);
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const cat = location.search;
@@ -22,6 +22,7 @@ const Blogs = () => {
           let res;
           if (sliced != "home") {
             res = await axios.get(`${backendUrl}/cat${cat}`);
+            // console.log(`${backendUrl}/cat/?cat=${sliced}`);
             if (JSON.stringify(res.data) !== JSON.stringify(posts)) {
               setPosts(res.data);
             }
@@ -43,7 +44,7 @@ const Blogs = () => {
       getPosts();
     }
   }, [cat, posts]);
-  console.log(posts);
+//  console.log(posts);
   // useEffect(() => {
   //    setLoading(true)
   //   console.log(loading + "started")
@@ -100,7 +101,10 @@ const Blogs = () => {
                 key={post.id}
               >
                 {console.log(`${backendUrl}/upload/${post.img}`)}
-                <img src={`${backendUrl}/upload/${post.img}`} alt="Uploaded Image" />
+                <img
+                  src={`${backendUrl}/upload/${post.img}`}
+                  alt="Uploaded Image"
+                />
                 <div className="post-content">
                   <h2>{post.title}</h2>
                   <p>{post.desc}</p>

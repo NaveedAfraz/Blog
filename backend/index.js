@@ -33,13 +33,27 @@ app.use(
     credentials: true, // Enable cookies and authentication headers
   })
 );
+// const allowedOrigins = [
+//   "http://localhost:5173", // Local frontend URL
+// ];
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       // Allow requests with no origin (like Postman or mobile apps)
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       }
+//       return callback(new Error("Not allowed by CORS"));
+//     },
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true, // Enable cookies and authentication headers
+//   })
+// );
 
 
 const backendUrl = "https://blog-3-mfgj.onrender.com";
 // Middleware
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/index.html"));
-});
 app.use("/upload", express.static(path.join(__dirname, "../frontend/upload")));
 app.use(
   "/uploaduserimg",
@@ -90,13 +104,15 @@ app.use("/auth", auth);
 app.use("/cat", post);
 app.use("/user", users);
 app.get("/", (req, res) => res.json({ message: "Hello from the backend!" }));
-
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
+});
 // Error Handling Middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: err.message || "Internal Server Error" });
 });
-
+// const PORT = 5000;
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on ${backendUrl}`);
