@@ -23,6 +23,8 @@ import { HomePage } from "./HomePage";
 import Blogs from "./blogs";
 import "./index.css";
 function App() {
+  const [EditPopup, setEditPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
   const Layout = () => {
     return (
       <>
@@ -58,7 +60,16 @@ function App() {
           <Route path="/blog/:cat/post/:id" element={<Single />} />
           <Route
             path="/profile"
-            element={editshow ? <EditProfile /> : <UserProfile />}
+            element={
+              editshow ? (
+                <EditProfile
+                  showpopup={EditPopup}
+                  setshowpopup={setEditPopup}
+                />
+              ) : (
+                <UserProfile />
+              )
+            }
           />
           <Route path="*" element={<NotFound />} />
           <Route path="/write" element={<Write />}></Route>
