@@ -128,7 +128,7 @@ const EditProfile = () => {
         }, 3000);
       }
     }
-  }, [showPopup]);
+  }, [showPopup,navigate]);
 
   return (
     <>
