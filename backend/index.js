@@ -23,17 +23,12 @@ const cors = require('cors');
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      const allowedPattern = /^https:\/\/blog-.*\.vercel\.app$/; // Match dynamic Vercel subdomains
-      if (!origin || allowedPattern.test(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error('Not allowed by CORS'));
-    },
+    origin: '*', // Allow all origins
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
 
 const backendUrl = "https://blog-3-mfgj.onrender.com";
 // Middleware
