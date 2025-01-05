@@ -104,7 +104,7 @@ const EditProfile = ({
         }
       );
       console.log("running2");
-     // console.log(res);
+      // console.log(res);
       console.log("this is the data i got from backend ", res.data?.user);
       if (res.status === 200) {
         console.log("Setting user changed", res.data?.user);
@@ -120,6 +120,13 @@ const EditProfile = ({
       }
     } catch (error) {
       console.log("Error:", error);
+    } finally {
+      // Avoid showing the popup multiple times
+      setTimeout(() => {
+        setshowpopup(false);
+        setPopupMessage("");
+        navigate("/home"); // Navigate after 4 seconds
+      }, 4000);
     }
   };
   console.log(showpopup);
@@ -127,11 +134,7 @@ const EditProfile = ({
     if (showpopup) {
       console.log("Popup is visible:", popupMessage);
       if (showpopup) {
-        setTimeout(() => {
-          navigate("/home");
-          setshowpopup(false);
-          setPopupMessage("");
-        }, 4000);
+        console.log("Popup is visible:", popupMessage);
       }
     }
   }, []);
