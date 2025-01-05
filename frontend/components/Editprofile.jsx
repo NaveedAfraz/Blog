@@ -104,7 +104,7 @@ const EditProfile = ({
         }
       );
       console.log("running2");
-      console.log(res);
+     // console.log(res);
       console.log("this is the data i got from backend ", res.data?.user);
       if (res.status === 200) {
         console.log("Setting user changed", res.data?.user);
@@ -134,7 +134,7 @@ const EditProfile = ({
         }, 4000);
       }
     }
-  }, [showpopup]);
+  }, []);
 
   return (
     <>
