@@ -92,7 +92,7 @@ const EditProfile = ({
     // setUser(data);
     try {
       console.log("running");
-      
+
       const res = await axios.put(
         `${backendUrl}/user/userBlog/${user.ID}`,
         data,
@@ -103,12 +103,12 @@ const EditProfile = ({
         }
       );
       console.log("running2");
-     // console.log(res);
+      // console.log(res);
       console.log("this is the data i got from backend ", res.data?.user);
       if (res.status === 200) {
         console.log("Setting user changed", res.data?.user);
         setshowpopup(true);
-      setPopupMessage("The details were updated, redirecting to HomePage...");
+        setPopupMessage("The details were updated, redirecting to HomePage...");
         setUser(res.data?.user);
         console.log(
           "Setting popup message:",
