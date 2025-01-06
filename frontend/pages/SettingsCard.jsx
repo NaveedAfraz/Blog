@@ -10,7 +10,7 @@ import Menu from "../pages/Menu";
 const Tabs = () => {
   const { user, setuser, filteredPosts, setPosts, posts, backendUrl } =
     useContext(authContext);
-  // console.log(user);
+  console.log(user);
 
   const [filtered, setFiltered] = useState([]);
   useEffect(() => {
@@ -363,7 +363,8 @@ const Tabs = () => {
             </ul>
           </div>
         )}
-        {/* {console.log(user)} */}
+        {console.log(user)}
+        {console.log(filteredPostsagain)}
         {activeTab === "comments" && (
           <div className="comments">
             <h3>Your Comments</h3>
