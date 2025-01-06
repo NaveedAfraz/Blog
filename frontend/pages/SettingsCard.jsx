@@ -222,7 +222,7 @@ const Tabs = () => {
     console.log("faRunning");
     if (filtered.length >= 0) {
       const filteredPostsagain = filtered.filter(
-        (post) => post.status == "draft"
+        (post) => post.status == "draft" && post.userid == user.ID
       );
       console.log(filteredPostsagain);
       setfilteredPostsagain(filteredPostsagain);
@@ -390,45 +390,43 @@ const Tabs = () => {
                 <div className="user-posts">
                   <div className="user-innerContainer">
                     {filteredPostsagain.length !== 0 &&
-                      filteredPostsagain.filter((post) =>
-                        (post.userid === user.ID).map((post, index) => (
-                          <div
-                            className={`post-item ${
-                              index % 2 === 0 ? "left" : "right"
-                            }`}
-                            key={post.id}
-                          >
-                            <img
-                              src={`${backendUrl}/upload/${post.img}`}
-                              alt="post image"
-                            />
-                            <div className="post-content">
-                              <h2>{post.title}</h2>
-                              <p>{post.desc}</p>
+                      filteredPostsagain.map((post, index) => (
+                        <div
+                          className={`post-item ${
+                            index % 2 === 0 ? "left" : "right"
+                          }`}
+                          key={post.id}
+                        >
+                          <img
+                            src={`${backendUrl}/upload/${post.img}`}
+                            alt="post image"
+                          />
+                          <div className="post-content">
+                            <h2>{post.title}</h2>
+                            <p>{post.desc}</p>
+                            <Link
+                              className="post-link"
+                              to={`/cat=${post.cat}/post/${post.id}`}
+                            >
+                              Read More
+                            </Link>
+                            <div className="edit">
+                              {console.log(post.id)}
                               <Link
-                                className="post-link"
-                                to={`/cat=${post.cat}/post/${post.id}`}
+                                to={`/write?edit=post/${post.id}`}
+                                state={[post]}
                               >
-                                Read More
+                                <FontAwesomeIcon icon={faEdit} />
                               </Link>
-                              <div className="edit">
-                                {console.log(post.id)}
-                                <Link
-                                  to={`/write?edit=post/${post.id}`}
-                                  state={[post]}
-                                >
-                                  <FontAwesomeIcon icon={faEdit} />
-                                </Link>
-                                <FontAwesomeIcon
-                                  className="delete"
-                                  onClick={() => handleDelete(post.id)}
-                                  icon={faTrash}
-                                />
-                              </div>
+                              <FontAwesomeIcon
+                                className="delete"
+                                onClick={() => handleDelete(post.id)}
+                                icon={faTrash}
+                              />
                             </div>
                           </div>
-                        ))
-                      )}
+                        </div>
+                      ))}
                   </div>
                 </div>
               ) : (
