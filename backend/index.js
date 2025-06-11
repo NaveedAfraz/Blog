@@ -11,11 +11,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
- const PORT = process.env.PORT || 3006;
+const PORT = process.env.PORT || 3006;
 app.use(express.static(path.join(__dirname, "../frontend")));
 
 // Catch-all route for React Router
-
+app.use("/api/health", (req, res) => {
+  return res.json("live");
+});
 
 // const allowedOrigins = [
 //   "http://localhost:5173", // Local frontend URL
@@ -37,7 +39,6 @@ app.use(
     credentials: true, // Enable cookies and authentication headers
   })
 );
-
 
 //const backendUrl = "https://blog-3-mfgj.onrender.com";
 // Middleware
