@@ -9,10 +9,7 @@ export const authContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   //  JSON.parse(localStorage.getItem("user"))
   //const backendUrl = "https://blog-3-mfgj.onrender.com";
-  const [backendUrl, setBackendUrl] = useState(
-    "https://blog-3-mfgj.onrender.com"
-    // "http://localhost:5000"
-  );
+  const [backendUrl, setBackendUrl] = useState(import.meta.);
   const [user, setUser] = useState();
   const [posts, setPosts] = useState([]);
   const [editshow, seteditshow] = useState(false);

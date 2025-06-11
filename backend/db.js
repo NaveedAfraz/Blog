@@ -2,11 +2,11 @@ const mysql = require("mysql2");
 const fs = require("fs");
 require("dotenv").config(); // Load environment variables
 
-const { DATABASE_URL, DB_CONNECTION_LIMIT = 10 } = process.env;
+const { MYSQL_HOST, DB_CONNECTION_LIMIT = 10 } = process.env;
 
 let pool;
 
-if (DATABASE_URL) {
+if (MYSQL_HOST) {
   console.log("Using DATABASE_URL for MySQL connection.");
 
   pool = mysql.createPool({

@@ -39,7 +39,7 @@ app.use(
 );
 
 
-const backendUrl = "https://blog-3-mfgj.onrender.com";
+//const backendUrl = "https://blog-3-mfgj.onrender.com";
 // Middleware
 app.use("/upload", express.static(path.join(__dirname, "../frontend/upload")));
 app.use(
@@ -102,5 +102,5 @@ app.use((err, req, res, next) => {
 // const PORT = 5000;
 // Start Server
 app.listen(PORT, () => {
-  console.log(`Server is running on ${backendUrl}`);
+  console.log(`Server is running on ${process.env.BACKEND_URL}`);
 });
