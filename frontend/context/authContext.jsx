@@ -15,7 +15,7 @@ export const AuthContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [editshow, seteditshow] = useState(false);
   // console.log(user);
-  console.log(backendUrl);
+  console.log(backendUrl , "backendurl");
   
   const [filteredPosts, setFilteredPosts] = useState([]);
   useEffect(() => {
